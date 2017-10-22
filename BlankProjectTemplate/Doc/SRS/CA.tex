@@ -133,7 +133,7 @@ systems.  The symbols are listed in alphabetical order.
 \midrule
 
 
-$A$ & \text{-} & known \textit{m x n} matrix \\
+$A$ & \text{-} & known \textit{m $\times$ n} matrix \\
 $x$ & \text{-} & \textit{n}-vector\\
 $b$ & \text{-} & \textit{m}-vector\\
 M$_{1}$ & \text{-} & elementary elimination matrix\\
@@ -187,7 +187,7 @@ notation the general form of linear equation is
 
  \centerline{\textbf{Ax = b}}
 
-where \textbf{A} is known \textit{m x n} matrix, \textbf{b} is an
+where \textbf{A} is known \textit{m $\times$ n} matrix, \textbf{b} is an
 \textit{m}-vector and \textbf{x} is an \textit{n}-vector. If \textbf{x} is
 known, then such a linear relationship enables us to predict effect \textbf{b}
 from cause \textbf{x} by matrix-vector multiplication \textbf{b} =
@@ -244,6 +244,8 @@ describes the user characteristics and lists the system constraints.
 \caption{System Context}
 \end{figure}
 
+
+
 The figure shows the system context. The user gives the input in the form of
 linear equations to the solver and the solver aims to give the solution to the
 equations as the output.
@@ -285,8 +287,7 @@ Definitions, Data Definitions, Goal Statements and Theoretical Models.
 
 \subsection{Problem Description} \label{Sec_pd}
 
-\progname{} is a software library which is developed to solve linear algebraic
-equations. As many relationships in nature are linear, it will be very handy for
+\progname{} is a software library which is developed to solve linear algebraic equations using numerical methods for linear algebraic equation . This solver is used to solve the linear algebraic equations with different number of variables. As many relationships in nature are linear, it will be very handy for
 students to solve linear algebraic equations.
 
 \subsection{Terminology and  Definitions}
@@ -300,7 +301,7 @@ easier to correctly understand the requirements:
 
 \begin{itemize}
 
-\item \textbf{A} is a known \textit{m x n} matrix 
+\item \textbf{A} is a known \textit{m $\times$ n} matrix 
 
 \item \textbf{b} is an \textit{m}-vector 
 
@@ -466,9 +467,9 @@ Symbol & \textbf{rank(A)}\\
         & rank(A) is the rank of matrix A.\\
 
 
-        & We assume that A is an m x n matrix and we define the linear map f by f(x) = Ax  .\\
+        & We assume that A is an m $\times$ n matrix and we define the linear map f by f(x) = Ax  .\\
 
-        & The rank of an m x n matrix is a nonnegative integer and cannot be greater than either m or n .\\
+        & The rank of an m $\times$ n matrix is a nonnegative integer and cannot be greater than either m or n .\\
         
   \hline
   Source&
@@ -500,10 +501,8 @@ Symbol & \textbf{rank(A)}\\
 \begin{itemize}
 
 \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_solveforx}:] {
-An explicit general linear algebraic equation problem is represented by
-\textbf{Ax = b}. If x is known then such a linear relationship enables us to
-predict effect b from cause x. If the vector b of effects is known then it would
-likely able to determine the corresponding vector x of cause.}
+Given the general linear algebraic equation problem which is represented by
+\textbf{Ax = b}. The initial values are A and B. The input which are the coefficients, are entered in a matrix form. If the vector b of effects is known then it would likely able to determine the corresponding vector x of cause.}
 
 %\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_InputOutput}:]{
 %The user must provide the required input there by calling the linear algebraic equation solver, and the solver must display the output.}
@@ -534,7 +533,7 @@ on.
   Description & 
 A linear transformation between two finite dimensional vector spaces is
 represented by a matrix. In matrix-vector notation, a system of linear algebraic
-equations has the form \textbf{Ax = b} where \textbf{A} is known \textit{m x n}
+equations has the form \textbf{Ax = b} where \textbf{A} is known \textit{m $\times$ n}
 matrix, \textbf{b} is an \textit{m}-vector and \textbf{x} is an
 \textit{n}-vector. If \textbf{x} is known, then such a linear relationship
 enables us to predict effect \textbf{b} from cause \textbf{x} by matrix-vector
@@ -565,7 +564,7 @@ we can be able to determine the corresponding vector \textbf{x} of cause. \\
   \hline
   Equation&   \textbf{Ax = b}
 
-An \textit{n x n} matrix \textbf{A} is said to be nonsingular if it satisfies any of the following equivalent conditions:
+An \textit{n $\times$ n} matrix \textbf{A} is said to be nonsingular if it satisfies any of the following equivalent conditions:
 
 
 1. \textbf{A} has an inverse (there is a matrix, denoted by \textbf{A$^{-1}$},
@@ -635,7 +634,7 @@ one which is expressed in mathematical terms.
   \hline
   Output& \textbf{M$_1$}, \textbf{L}, \textbf{U}, \textbf{x}     \\
   \hline
-  Description&A is a known \textit{m x n} matrix.\\
+  Description&A is a known \textit{m $\times$ n} matrix.\\
   &x is an \textit{n}-vector.\\
   &b is an \textit{m}-vector.\\
   &M$_{1}$ is an elementary elimination matrix.\\
@@ -673,9 +672,13 @@ vector, so that we obtain the further modified linear system
 entries are zero in the relevant rows. If we define the matrix \textbf{M} =
 \textbf{M$_{n-1}$}...\textbf{M$_{1}$}, then the transformed the linear system is
 
+\vspace{.5cm}
+
 \textbf{M}\textbf{A}\textbf{x} = \textbf{M$_{n-1}$}...
 \textbf{M$_{1}$}\textbf{A}\textbf{x} = \textbf{M$_{n-1}$}...
 \textbf{M$_{1}$}\textbf{b} = \textbf{M}\textbf{b}
+
+\vspace{.5cm}
 
 is upper triangular and can be solved by back-substitution to obtain the
 solution to the original linear system \textbf{Ax = b}.
@@ -686,16 +689,24 @@ known as LU factorization or LU decomposition because it decomposes the matrix
 upper triangular matrix, \textbf{U}. To see this, recall that the product
 \textbf{L$_k$}\textbf{L$_j$} is unit lower triangular if k<j, so taht
 
+\vspace{.5cm}
+
 \textbf{L} = \textbf{M$^{-1}$} =
 \textbf{(\textbf{M$_{n-1}$}...\textbf{M$_{1}$})$^{-1}$} =
 \textbf{{M$_{1}$}$^{-1}$}...\textbf{{M$_{n-1}$}$^{-1}$} =
 \textbf{L$_{1}$}...\textbf{L$_{n-1}$}
 
+\vspace{.5cm}
+
 is unit lower triangular. We have already seen that, by design, the matrix
 \textbf{U} = \textbf{MA} is upper triangular. Therefore, we have expressed
 \textbf{A} as a product
 
+\vspace{.5cm}
+
 \textbf{A} = \textbf{LU}
+
+\vspace{.5cm}
 
 where \textbf{L} is unit lower triangular and \textbf{U} is upper triangular.
 Given such a factorization, the linear system \textbf{Ax = b} can be written as
@@ -749,42 +760,60 @@ find the solution vector x.
 \subsubsection*{Derivation of  Gauss-Jordan Elimination Method}
 
 The transformation of A is achieved in n successive elimination steps. Starting
-from {A$^{(1)}$} = A, the {k$^{th}$} elimination step, k = 1,. . . , n,
-transforms {A$^{(k)}$} into {A$^{(k+1)}$} such that the off-diagonal elements in
-the {k$^{th}$} column, not only below but also above the main diagonal, become
-zero. Thus, after n steps the diagonal matrix D = {A$^{(n+1)}$} is obtained. The
-{k$^{th}$} elimination step can be formulated as follows. The pivot of
-the{k$^{th}$} elimination step is $\delta_k$, = {A$^{(k)}_{k,k}$}, as in
-Gaussian elimination. Let {g$_k$}, be the column vector given by
+from \textbf{{A$^{(1)}$} = A}, the \textbf{{k$^{th}$}} elimination step, k = 1,. . . , n,
+transforms \textbf{{A$^{(k)}$}} into \textbf{{A$^{(k+1)}$}} such that the off-diagonal elements in
+the \textbf{{k$^{th}$}} column, not only below but also above the main diagonal, become
+zero. Thus, after n steps the diagonal matrix \textbf{D = {A$^{(n+1)}$}} is obtained. The
+\textbf{{k$^{th}$}} elimination step can be formulated as follows. The pivot of
+the \textbf{{k$^{th}$}} elimination step is \textbf{$\delta_k$} = \textbf{{A$^{(k)}_{k,k}$}}, as in
+Gaussian elimination. Let \textbf{{g$_k$}}, be the column vector given by
 
-{g$_k$} = {A$^{(k)}$}{e$_k$} - $\delta_k${e$_k$}
+\vspace{.5cm}
 
-therefore the vector obtained from the{k$^{th}$} column of {A$^{(k)}$} by
-replacing its diagonal element by zero. Then the{k$^{th}$} elimination step, to
-introduce the required zeros in the {k$^{th}$} column of the matrix, consists of
-premultiplying {A$^{(k)}$} by the matrix
+\textbf{{g$_k$} = {A$^{(k)}$}{e$_k$} - $\delta_k${e$_k$}}
 
-{T$_k$} = I - $\delta_k^{-1}$ {g$_k$}{e$_k^T$}
+\vspace{.5cm}
 
-In other words,{A$^{(k+1)}$} is obtained from {A$^{(k)}$} by means of the
+therefore the vector obtained from the \textbf{{k$^{th}$}} column of \textbf{{A$^{(k)}$}} by
+replacing its diagonal element by zero. Then the \textbf{{k$^{th}$}} elimination step, to
+introduce the required zeros in the \textbf{{k$^{th}$}} column of the matrix, consists of
+premultiplying \textbf{{A$^{(k)}$}} by the matrix
+
+\vspace{.5cm}
+
+\textbf{{T$_k$} = I - $\delta_k^{-1}$ {g$_k$}{e$_k^T$}}
+
+\vspace{.5cm}
+
+In other words, \textbf{{A$^{(k+1)}$}} is obtained from \textbf{{A$^{(k)}$}} by means of the
 rank-one modification
 
-{A$^{(k+1)}$ = {T$_k$}{A$^{(k)}$} = {A$^{(k)}$} -
-$\delta_k^{-1}${g$_k$}{e$_k^T$}
+\vspace{.5cm}
+
+\textbf{A$^{(k+1)}$ = {T$_k$}{A$^{(k)}$} = {A$^{(k)}$}} -
+\textbf{{$\delta_k^{-1}$}{g$_k$}{e$_k^T$}}
+
+\vspace{.5cm}
 
 The corresponding transformation of right-hand side vector b proceeds as
-follows. Starting from {b$^{(1)}$} = b, the{k$^{th}$} elimination step, k = 1,.
-. . , n, transforms {b$^{(k)}$} into {b$^{(k+1)}$} according to
+follows. Starting from \textbf{{b$^{(1)}$} = b}, the \textbf{{k$^{th}$}} elimination step, k = 1,.
+. . , n, transforms \textbf{{b$^{(k)}$}} into \textbf{b$^{(k+1)}$} according to
 
-{b$^{(k+1)}$} = {T$_k$}{b$^{(k)}$} = {b$^{(k)}$} -
-$\delta_k^{-1}${b$^{(k)}_k$}{g$_k$},
+\vspace{.5cm}
+
+\textbf{{b$^{(k+1)}$} = {T$_k$}{b$^{(k)}$} = {b$^{(k)}$} -
+$\delta_k^{-1}${b$^{(k)}_k$}{g$_k$}},
+
+\vspace{.5cm}
 
 which is a vector update operation. 
 
-Thus, the given linear system is transformed into the equivalent system Dx = y,
+Thus, the given linear system is transformed into the equivalent system \textbf{Dx = y},
 which is easily solved by calculating
 
-x = {D$^{-1}$}y.
+\vspace{.5cm}
+
+\textbf{x = {D$^{-1}$}y}.
 
 ~\newline
 
@@ -877,11 +906,6 @@ assumptions..
 
 
 
-
-
-\afterpage{
-
-\begin{landscape}
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -902,8 +926,8 @@ assumptions..
 \caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
 \label{Table:trace}
 \end{table}
-\end{landscape}
-}
+
+
 
 
 \begin{landscape}
@@ -930,7 +954,8 @@ assumptions..
 \label{Table:A_trace}
 \end{table}
 \end{landscape}
-}
+  
+
 
 
 
