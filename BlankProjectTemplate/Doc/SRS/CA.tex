@@ -30,7 +30,7 @@
     urlcolor=cyan           % color of external links
 }
 
-%\input{../Comments}
+\input{../Comments}
 
 % For easy change of table widths
 \newcommand{\colZwidth}{1.0\textwidth}
@@ -133,7 +133,7 @@ systems.  The symbols are listed in alphabetical order.
 \midrule
 
 
-$A$ & \text{-} & known \textit{m x n} matrix \\
+$A$ & \text{-} & known \textit{m x n} matrix \wss{Use $m \times n$}\\
 $x$ & \text{-} & \textit{n}-vector\\
 $b$ & \text{-} & \textit{m}-vector\\
 M$_{1}$ & \text{-} & elementary elimination matrix\\
@@ -221,8 +221,8 @@ aims to solve the equations and give the correct output.
 
 The intended readers who read this document must have basic knowledge about
 linear algebraic equations and the different methods of solving linear algebraic
-equations which are typically covered in first and second year Linear Algebra courses .
-
+equations which are typically covered in first and second year Linear Algebra
+courses . \wss{Watch the spacing in your sentences with punctuation.}
 
 \subsection{Organization of Document}
 
@@ -248,19 +248,23 @@ The figure shows the system context. The user gives the input in the form of
 linear equations to the solver and the solver aims to give the solution to the
 equations as the output.
 
-
+\wss{The user likely makes more sense as program rather than a person.}
 
 \begin{itemize}
 \item User Responsibilities:
 \begin{itemize}
 \item The main responsibility of the user is to give the appropriate input.
 \item User must make sure that the input given is error free.
-\item User must enter the values in matrix form.
+\item User must enter the values in matrix form. \wss{Does the user really need
+    to put the data in the correct format?  If it isn't in the correct software,
+    the software should be able to detect this.}
 \end{itemize}
 \item \progname{} Responsibilities:
 \begin{itemize}
 \item The main responsibility of the linear algebraic equation solver is to
-identify the input which is improper or invalid.
+  identify the input which is improper or invalid. \wss{This point shows that
+    your software does check the format, so you don't need the last point in the
+    user responsibility list.}
 \item Detect data type mismatch, such as a string of characters instead of a
   floating point number.
 \item the ultimate responsibility of the linear algebraic equation solver is to
@@ -271,7 +275,8 @@ solve the equations and to produce the output.
 \subsection{User Characteristics} \label{SecUserCharacteristics}
 
 The end user of \progname{} should have an understanding of undergraduate Level
-of linear algebra.
+of linear algebra.  \wss{What level course?  Mathematics is quite standardized,
+  so saying Linear Algebra 1, would be helpful.}
 
 \subsection{System Constraints}
 
@@ -309,12 +314,19 @@ easier to correctly understand the requirements:
 \item \textbf{A$^{-1}$} is the inverse of the matrix \textbf{A}
 
 \item rank(\textbf{A}) = \textit{n} the rank of a matrix is the maximum number
-of linearly independent rows or columns it contains.
+of linearly independent rows or columns it contains. \wss{the rank of a matrix
+  is not always $n$.}
 
 \item det(\textbf{A}) is determinant of matrix \textbf{A}
 
 
 \end{itemize}
+
+\wss{The terminology you have listed is mostly a repetition of symbols you are
+  using elsewhere.  Terminology is more for definitions of terms.  You could
+  define terms like singular, condition number etc.  Your definition of rank
+  seems like an appropriate item to list here.  The information above is a
+  better fit for the list of symbols.}
 
 \pagebreak
 
@@ -360,13 +372,21 @@ $\begin{bmatrix}
 $\begin{bmatrix}
   x_1\\
   x_2
-\end{bmatrix}$.\\
+\end{bmatrix}$. \wss{Your definitions are just for a two by two matrix.  You
+  should explain what it means to have an $m \times n$ matrix.}\\
   \hline
   Source&
-       Scientific Computing, An Introductory Survey, Second Edition by MICHEL T. HEATH, Chapter 2.
+       Scientific Computing, An Introductory Survey, Second Edition by MICHEL
+          \wss{spell check}
+          T. HEATH, Chapter 2. \wss{Use BibTeX for this and put the reference in
+          your list of references}
   \\
   \hline
-  Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}], [\aref{A_explicit}], [\aref{A_matrixform}]\\
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}],
+             [\tref{T_LAE}], [\aref{A_explicit}], [\aref{A_matrixform}]
+             \wss{I've had a look at some of these reference by items and they
+             don't actually have references.  You have to actually use the
+             references to put this in.}\\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -395,7 +415,8 @@ Symbol & \textbf{A$^{-1}$}\\
 
 
         & \textbf{A$^{-1}$} is the inverse of matrix \textbf{A} .\\
-        &\textbf{I} is an Identity matrix .\\
+        &\textbf{I} is an Identity matrix . \wss{You should define the identity
+          matrix somewhere.  It would be a good data definition.}\\
   \hline
   Source&
        Scientific Computing, An Introductory Survey, Second Edition by MICHEL T. HEATH, Chapter 2.
@@ -468,7 +489,8 @@ Symbol & \textbf{rank(A)}\\
 
         & We assume that A is an m x n matrix and we define the linear map f by f(x) = Ax  .\\
 
-        & The rank of an m x n matrix is a nonnegative integer and cannot be greater than either m or n .\\
+        & The rank of an m x n matrix is a nonnegative integer and cannot be
+          greater than either m or n . \wss{You haven't really defined rank.}\\
         
   \hline
   Source&
@@ -539,7 +561,8 @@ matrix, \textbf{b} is an \textit{m}-vector and \textbf{x} is an
 \textit{n}-vector. If \textbf{x} is known, then such a linear relationship
 enables us to predict effect \textbf{b} from cause \textbf{x} by matrix-vector
 multiplication \textbf{b} = \textbf{A}\textbf{x}. The linear system will also
-enable us to "reverse engineering", if we know the vector \textbf{b} of effects,
+enable us to "reverse engineering", \wss{Use ``quote'' to get correct quotation
+                marks} if we know the vector \textbf{b} of effects,
 we can be able to determine the corresponding vector \textbf{x} of cause. \\
   \hline
   Source &
@@ -550,6 +573,11 @@ we can be able to determine the corresponding vector \textbf{x} of cause. \\
   \hline
 \end{tabular}
 \end{minipage}\\
+
+\wss{You should introduce the assumption that $A$ is a square matrix here.
+  There is no reason to continue with the more general $m \times n$ case.  (You
+  should also add an explicit assumption that $A$ is square.  This is also
+  something you should say in the scope section.)}
 
 ~\newline
 
@@ -575,7 +603,9 @@ such that \textbf{A}\textbf{A$^{-1}$} = \textbf{A$^{-1}$}\textbf{A} =
 
  2. Determinant of (\textbf{A}) is not equals to 0   
 
- 3. rank(\textbf{A}) = \textit{n} (the rank of a matrix is the maximum number of linearly independent  rows or columns it contains).   \\
+ 3. rank(\textbf{A}) = \textit{n} (the rank of a matrix is the maximum number of
+            linearly independent  rows or columns it contains).   \wss{If you
+            have a list use the itemize or enumerate environments in LaTeX.}\\
 
   \hline
 Description & The existence of a solution to a system of linear equations
@@ -599,7 +629,10 @@ Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\ddref{D_inverse}],
 
 ~\newline
 
-
+\wss{This shouldn't be a separate theoretical model.  It is part of the first
+  model.  The potential solutions for a linear system of equations are a unique
+  solution, an infinite number of solutions or no solution.  You should then
+  reference definitions that define what rank, singular etc. mean.}
 
 \section{Variabilities}
 
@@ -633,7 +666,9 @@ one which is expressed in mathematical terms.
   Input& \textbf{A}, \textbf{b}   \\
   
   \hline
-  Output& \textbf{M$_1$}, \textbf{L}, \textbf{U}, \textbf{x}     \\
+  Output& \textbf{M$_1$}, \textbf{L}, \textbf{U}, \textbf{x} \wss{The output
+          should only be $x$ and an element from enumerated type that indicates
+          whether the matrix is singular or not.}   \\
   \hline
   Description&A is a known \textit{m x n} matrix.\\
   &x is an \textit{n}-vector.\\
@@ -650,6 +685,10 @@ one which is expressed in mathematical terms.
 \end{tabular}
 \end{minipage}\\
 
+\wss{You are really inconsistent with the notation.  At some points you use bold
+  face for matrices and vectors, other times you do not.  You also are not
+  consistent in putting your variables and equations in the LaTeX equation
+  environment.}
 
 \subsubsection*{Derivation of Gaussian Elimination Method}{
 
@@ -684,7 +723,7 @@ The process we have just described is known as Gaussian elimination. It is also
 known as LU factorization or LU decomposition because it decomposes the matrix
 \textbf{A} into product of a unit lower triangular matrix, \textbf{L}, and the
 upper triangular matrix, \textbf{U}. To see this, recall that the product
-\textbf{L$_k$}\textbf{L$_j$} is unit lower triangular if k<j, so taht
+\textbf{L$_k$}\textbf{L$_j$} is unit lower triangular if k<j, so taht \wss{spell check!}
 
 \textbf{L} = \textbf{M$^{-1}$} =
 \textbf{(\textbf{M$_{n-1}$}...\textbf{M$_{1}$})$^{-1}$} =
@@ -711,8 +750,13 @@ In either case, back-substitution for upper triangular matrix is then used to
 solve the upper triangular system \textbf{Ux} = \textbf{y} to obtain the
 solution \textbf{x}.
 
+\wss{The above text is plagiarized.  You cannot take someone else's words and
+  present them as your own without citation.  The above is almost a direct quote
+  from Heath, but you don't cite that resource here.  Please be very careful to
+  not do this.  For the current project, it would have been fine to not produce
+  all of these details.  You could give a high level overview of the algorithm
+  and simply refer the reader to the Heath textbook for the details.}
 
-}
 ~\newline
 
 %Instance Model 2
@@ -788,6 +832,19 @@ x = {D$^{-1}$}y.
 
 ~\newline
 
+\wss{More plagiarism.  This is not okay!  You might not previously have known
+  how serious this is, but going forward, please remember that you cannot do
+  this.  The text you provided comes directly from ``Parallel algorithms for
+  solving large linear systems'' by Dekker et al.  You do not even cite the
+  article.  You might have a feeling that you need all of this detail in the
+  SRS, but you do not.  If you aren't focusing on a variability in the
+  algorithm, you should be able to just give a high level overview and then
+  point to the appropriate external reference.  I'm going to assume that the
+  current mistake was a misunderstanding, but if this happens in the future, I
+  will have to consider it a case of Academic Dishonesty.  If you have any
+  doubts going forward, please ask me.}
+
+
 \subsection{Assumptions}
 
 This section simplifies the original problem and helps in developing the
@@ -803,37 +860,57 @@ It is assumed that user will not declare the method by which the linear algebrai
 ~\newline
  [\iref{gaussian}], [\iref{gauss}].
 
+\wss{Remember that the user is a driver program.  The driver should be able to
+  select the algorithm that is desired.  I don't think there is any reason to
+  not make the algorithm choice up to the caller.}
+
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_explicit}:]
 The entry of values for A, b will be of the explicit form such that Ax = b as described.
 ~\newline
  [\tref{T_LAE}]. [\iref{gaussian}], [\iref{gauss}]
+
+\wss{This isn't really an assumption.  You are just restating the requirements.
+Your software should be able to detect if the inputs are not in the correct format.}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_matrixform}:]
 it is assumed that the values for A, b are entered in matrix form.
 ~\newline
  [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}], [\ddref{D_inverse}], [\ddref{D_determinant}], [\ddref{D_rank}], [\gsref{G_solveforx}]
 
+\wss{The software can check this; you don't need to assume it.}
+
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_unique}:]
 It is assumed that the entered matrix A is non-singular. 
 ~\newline
 [\iref{gaussian}], [\iref{gauss}], [\aref{T_uniqsoln}], [\ddref{D_inverse}], [\gsref{G_solveforx}]
+
+\wss{You shouldn't really have to assume this.  If the matrix is singular, the
+  solver will fail and you can tell the user that the matrix is
+  ill-conditioned.  (You likely won't know whether it is singular, or just close
+  to singular, but for our purposes this is fine.)}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_complex}:]
 It is assumed that the entry of values for A, b will not have any complex numbers.
 ~\newline
  [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}], [\ddref{D_inverse}], [\ddref{D_determinant}], [\ddref{D_rank}], [\gsref{G_solveforx}]
 
+\wss{This is not the place to say the type of $A$.  The type is not an
+  assumption, but part of the requirements.  Really it is a scope decision.}
+
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_entryofA}:]
 It is assumed that the entry of values for A is from the set of $\mathbb{R}$.
 ~\newline
  [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}]
+
+\wss{Same assumption as the previous, but said a different way.  Same comment as
+  above applies.}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_entryofb}:]
 It is assumed that the entry of values for A is from the set of $\mathbb{R}$.
 ~\newline
  [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}]
 
-
+\wss{The final assumptions are the same assumption twice.}
 
 
 \end{itemize}
@@ -857,11 +934,16 @@ Perform the linear algebraic solver model when the user calls the program.
 
 \end{itemize}
 
+\wss{The first variability is related to input, not calculation.}  \wss{Your
+  calculation variabilities are the choice between IM1 and IM2.}
+
 \subsection{Output} \label{sec_Output}
 
 Not Applicable
 
-
+\wss{Why not?  Couldn't you have an output option of writing the values to a
+  file, instead of to memory?  Your output might include the residual, or it
+  might not.}
 
 \section{Traceability Matrices and Graphs}
 
@@ -958,5 +1040,14 @@ assumptions..
 \bibliographystyle{plainnat}
 \bibliography{ref}
 
+\wss{You should have more references than just this.}
+
+\wss{Your document would be improved with explicit type information.  To start
+  with, simply add this information to the table of symbols.  After this, you
+  should look for other places where the type information would be helpful.}
+
+\wss{You would have been better off with a simpler document.  A generalized
+  version of what you presented in class is better than trying to ``fake'' your
+  way through derivation of different algorithms.}
 
 \end{document}
