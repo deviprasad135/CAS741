@@ -3,6 +3,23 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -12,222 +29,502 @@
 }
 \usepackage[round]{natbib}
 
-\title{SE 3XA3: Test Plan\\Title of Project}
-
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
-}
-
-\date{\today}
+\newcounter{tnum}
+\newcommand{\tthetestnum}{\thetnum}
+\newcommand{\tref}[1]{T\ref{#1}}
 
 \input{../Comments}
 
 \begin{document}
 
+\title{Test Plan for the Library of Linear Algebraic Equation Solver }
+
+\author{Devi Prasad Reddy Guttapati}
+
+\date{\today}
+
+
+
+
+
 \maketitle
 
 \pagenumbering{roman}
-\tableofcontents
-\listoftables
-\listoffigures
 
-\begin{table}[bp]
-\caption{\bf Revision History}
+
+]
+\section{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+\today & 1.0 & Initial draft\\
+
 \bottomrule
 \end{tabularx}
-\end{table}
+
 
 \newpage
 
+
+\section{Symbols, Abbreviations and Acronyms}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  T & Test\\
+O & Output\\
+CA & Commonality Analysis\\
+IM & Instance Module\\
+$\epsilon$ & Difference\\
+
+
+  \bottomrule
+\end{tabular}\\
+
+\newpage
+
+\tableofcontents
+
+\listoftables
+
+
+
+
+\newpage
+
+
 \pagenumbering{arabic}
 
-This document ...
 
 \section{General Information}
 
+The following section gives an overview of the Verification and Validation ( V
+\& V ) plan for the Library of Linear Algebraic Equation Solver. This section
+also explains the purpose, scope and overview of the document.
+
 \subsection{Purpose}
+
+The purpose of this document is to plan the Verification and Validation process
+for the Library of Linear Algebraic Equation Solver. The main purpose of this
+document is to check whether the Library of Linear Algebraic Equation Solver
+meets the specifications and fulfill its intended purpose. This document will be
+used as the reference and guidance for testing the Library of Linear Algebraic
+Equation Solver.
+
+
+
 
 \subsection{Scope}
 
-\subsection{Acronyms, Abbreviations, and Symbols}
-	
-\begin{table}[hbp]
-\caption{\textbf{Table of Abbreviations}} \label{Table}
+The scope of testing is limited to Library of Linear Algebraic Equation Solver.
+The library includes two linear algebraic solving functions. The scope is
+limited to these two solving functions.
 
-\begin{tabularx}{\textwidth}{p{3cm}X}
-\toprule
-\textbf{Abbreviation} & \textbf{Definition} \\
-\midrule
-Abbreviation1 & Definition1\\
-Abbreviation2 & Definition2\\
-\bottomrule
-\end{tabularx}
-
-\end{table}
-
-\begin{table}[!htbp]
-\caption{\textbf{Table of Definitions}} \label{Table}
-
-\begin{tabularx}{\textwidth}{p{3cm}X}
-\toprule
-\textbf{Term} & \textbf{Definition}\\
-\midrule
-Term1 & Definition1\\
-Term2 & Definition2\\
-\bottomrule
-\end{tabularx}
-
-\end{table}	
 
 \subsection{Overview of Document}
+
+The following sections provides in depth information about the V \& V of Library
+of Linear Algebraic Equation Solver. The following sections also provides
+information about automated testing approach, testing tools. Test cases for
+system testing and unit testing are provided.
 
 \section{Plan}
 	
 \subsection{Software Description}
 
+Software which is tested is Library of Linear Algebraic Equation Solver. The
+library contains two linear algebraic equation solving algorithms. Given the
+initial values of algebraic equation A and B, the program calculates the final
+value x by using numerical methods.
+
 \subsection{Test Team}
+
+Devi Prasad Reddy Guttapati
 
 \subsection{Automated Testing Approach}
 
-\subsection{Testing Tools}
+Automated unit testing will be done for the Library of Linear Algebraic Equation
+Solver. Unit Testing Framework and R's Test Class will be used in a combination
+for automated testing. Syntax checking will be done automatically by the
+compiler.
 
-\subsection{Testing Schedule}
+\subsection{Verification Tools}
+
+The verification tools which will be used are as follows :
+
+\begin{enumerate}
+
+\item Comparison is done between the RStusio's own functional programs with the
+Library of Linear Algebraic Equation Solver by the Unit Testing Framework
+designed in RStudio. The following algorithm is used for comparison.
+
+
+\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear Algebraic Equation Solver}}{Result_{RStudio}}\]
+
+
+
+\item The framework for automated system testing is provided by using RStudio's Test Class .
+
+\item For program debugging and for checking syntax errors the program's IDE ( RStudio ) will be used as a Static Analyzer tool .
+
+\item covr is used for code coverage.
+\end{enumerate}
+
+
+
+\subsection{Non-Testing Based Verification}
 		
-See Gantt Chart at the following url ...
+Not Applicable
 
 \section{System Test Description}
+
+System Test is done to verify whether the goals mentioned in Commonality
+Analysis are achieved. Input and Output analysis is used to test the system as a
+whole by black box testing approach.
 	
 \subsection{Tests for Functional Requirements}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Calculation Tests}
 		
-\paragraph{Title for Test}
+\paragraph{Gaussian Elimination Method }
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss elimination_simple}: Simple Linear system involving two equations and two variables}}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Automated, System.
 					
-Initial State: 
+Initial State: Not applicable
 					
-Input: 
+Input: A = $\begin{bmatrix} 
+2 & 3 \\
+4 & 9 
+\end{bmatrix}$, B = $\begin{bmatrix} 
+6 \\
+15 
+\end{bmatrix}$
+
+Output: = x = $\begin{bmatrix} 
+3/2\\
+1
+\end{bmatrix}$, Success = true
 					
-Output: 
+How test will be performed: Automated system test
 					
-How test will be performed: 
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian elimination_three}: Linear system involving three equations and three variables}}
+
+Type: Functional, Automated, System.
+					
+Initial State: Not applicable
+					
+Input: A =  $\begin{bmatrix} 
+1 & 3 & -2 \\
+3 & 5 & 6\\
+2 & 4 & 3
+\end{bmatrix}$, B = $\begin{bmatrix} 
+5\\
+7\\
+8 
+\end{bmatrix}$
+					
+Output: x = $\begin{bmatrix} 
+-15\\
+8\\
+2 
+\end{bmatrix}$, Success = true
+					
+How test will be performed: Automated system test
+
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian elimination_five}: Linear system involving six equations and six variables}}
+
+Type: Functional, Automated, System.
+					
+Initial State: Not applicable
+					
+Input: A =  $\begin{bmatrix} 
+1 & 3 & -2 \\
+3 & 5 & 6\\
+2 & 4 & 3
+\end{bmatrix}$, B = $\begin{bmatrix} 
+5\\
+7\\
+8 
+\end{bmatrix}$
+					
+Output: x = $\begin{bmatrix} 
+-15\\
+8\\
+2 
+\end{bmatrix}$, Success = true
+					
+How test will be performed: Automated system test
+
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian elimination_three}: Linear system of equations which are singular}}
+
+Type: Functional, Automated, System.
+					
+Initial State: Not applicable
+					
+Input: A =$\begin{bmatrix} 
+0 & 2 & -1 \\
+3 & -2 & 1\\
+3 & 2 & -1
+\end{bmatrix}$, B = $\begin{bmatrix} 
+5\\
+7\\
+8 
+\end{bmatrix}$
+					
+Output: x = no solution, Success = true
+					
+How test will be performed: Automated system test
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
 
-...
+
+\paragraph{Gauss-Jordan Method }
+
+\begin{enumerate}
+
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan_simple}: Simple Linear system involving two equations and two variables}}
+
+
+Type: Functional, Automated, System.
+					
+Initial State: Not applicable
+					
+Input: A = $\begin{bmatrix} 
+2 & 3 \\
+4 & 9 
+\end{bmatrix}$, B = $\begin{bmatrix} 
+6 \\
+15 
+\end{bmatrix}$
+
+Output: = x = $\begin{bmatrix} 
+3/2\\
+1
+\end{bmatrix}$, Success = true
+					
+How test will be performed: Automated system test
+					
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan elimination_three}: Linear system involving three equations and three variables}}
+
+Type: Functional, Automated, System.
+					
+Initial State: Not applicable
+					
+Input: A =  $\begin{bmatrix} 
+1 & 3 & -2 \\
+3 & 5 & 6\\
+2 & 4 & 3
+\end{bmatrix}$, B = $\begin{bmatrix} 
+5\\
+7\\
+8 
+\end{bmatrix}$
+					
+Output: x = $\begin{bmatrix} 
+-15\\
+8\\
+2 
+\end{bmatrix}$, Success = true
+					
+How test will be performed: Automated system test
+
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan_six}: Linear system involving six equations and six variables}}
+
+Type: Functional, Automated, System.
+					
+Initial State: Not applicable
+					
+Input: A = $\begin{bmatrix} 
+1 & 1 & -2 & 1 & 3 & -1 \\
+2 & -1 & 1 & 2 & 2 & -3 \\
+1 & 3 & -3 & -1 & 2 &1 \\
+5 & 2 &-1 & -1 & 2 & 1 \\
+-3 & -1 & 2 & 3 & 1 &3 \\
+4 & 3 & 1 & -6 & -3 & -2
+\end{bmatrix}$, B = $\begin{bmatrix} 
+ 4\\
+20\\
+-15\\
+-3\\
+16\\
+-27 
+\end{bmatrix}$
+					
+Output: x = $\begin{bmatrix} 
+1\\
+-2\\
+3\\
+4\\
+2\\
+-1 
+\end{bmatrix}$, Success = true
+					
+How test will be performed: Automated system test
+
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan_three}: Linear system of equations which are singular}}
+
+Type: Functional, Automated, System.
+					
+Initial State: Not applicable
+					
+Input: A =$\begin{bmatrix} 
+0 & 2 & -1 \\
+3 & -2 & 1\\
+3 & 2 & -1
+\end{bmatrix}$, B = $\begin{bmatrix} 
+5\\
+7\\
+8 
+\end{bmatrix}$
+					
+Output: x = no solution, Success = true
+					
+How test will be performed: Automated system test
+
+\end{enumerate}
+
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Performance Requirements}
 		
-\paragraph{Title for Test}
+\paragraph{Test for calculating speed}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculation speed of  Library of Linear Algebraic Equation Solver.}}
 
-Type: 
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Non-Functional, Manual, Performance
 					
-Initial State: 
+Initial State: Not Applicable
 					
-Input: 
+Input/Condition: A = $\begin{bmatrix} 
+1 & 3 & -2 \\
+3 & 5 & 6\\
+2 & 4 & 3
+\end{bmatrix}$, B = $\begin{bmatrix} 
+5\\
+7\\
+8 
+\end{bmatrix}$
 					
-Output: 
+Output/Result: Time
 					
-How test will be performed: 
+How test will be performed: Manually Comparing the time of Library of Linear Algebraic Equation Solver.
+					
+
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Result Analysis}
 
-...
+\paragraph{Accuracy}
+
+\begin{enumerate}
+
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculating the accuracy of  Library of Linear Algebraic Equation Solver.}}
+
+
+Type: Non-Functional, Manual, Accuracy
+					
+Initial State: Not Applicable
+					
+Input/Condition: A = $\begin{bmatrix} 
+1 & 3 & -2 \\
+3 & 5 & 6\\
+2 & 4 & 3
+\end{bmatrix}$, B = $\begin{bmatrix} 
+5\\
+7\\
+8 
+\end{bmatrix}$
+					
+Output/Result: $\epsilon_{Relative}$ will be calculated by comparing the result
+obtained by Library of Linear Algebraic Equation Solver and the RStudio's own
+functional programs by the following algorithm
+
+\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear Algebraic Equation Solver}}{Result_{RStudio}}\]
+					
+How test will be performed: Manually Comparing the result of Library of Linear Algebraic Equation Solver.
+					
+\end{enumerate}
+
+
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\section{Tests for Proof of Concept}
+The following table shows the traceability mapping for test case and the requirements described in Commonality Analysis.
 
-\subsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\begin{table} [H]
+  \caption{Requirements Traceability Matrix}
+  \label{Table:Table_Traceability}  
+\begin{tabular}{|c|p{8cm}|}
+  \hline	
+  \textbf{Test Number} & \textbf{CA Requirements}\\
+  \hline 
+   T1& IM1\\ \hline
+   T2& IM1\\ \hline
+   T3& IM1\\ \hline
+   T4& IM1\\ \hline
+   T5& IM2\\ \hline
+   T6& IM2\\ \hline
+   T7& IM2\\ \hline
+   T8& IM2\\ \hline
+   
+  
+
+\end{tabular}\\
+\end{table}
+
+\section{Unit Testing plan}
+
+\subsection{Determinant Check Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-determinant1}: Simple }}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Unit.
 					
-Initial State: 
+Initial State: Not applicable
 					
-Input: 
+Input: A = $\begin{bmatrix} 
+1 & 3 \\
+2 & 6 
+\end{bmatrix}$
 					
-Output: 
+Output: Determinant is 0, there is no solution
 					
-How test will be performed: 
+How test will be performed: Automated Unit Test
 					
-\item{test-id2\\}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-determinant2}: Linear system involving three equations and three variables }}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Unit.
 					
-Initial State: 
+Initial State:  Not applicable
 					
-Input: 
+Input: A = $\begin{bmatrix} 
+1 & 3 & -2 \\
+3 & 5 & 6\\
+2 & 4 & 3
+\end{bmatrix}$
 					
-Output: 
+Output: Determinant is not 0,there is a unique solution
 					
-How test will be performed: 
+How test will be performed: Automated Unit Test 
 
 \end{enumerate}
 
-\subsection{Area of Testing2}
 
-...
-
-	
-\section{Comparison to Existing Implementation}	
-				
-\section{Unit Testing Plan}
-		
-\subsection{Unit testing of internal functions}
-		
-\subsection{Unit testing of output files}		
 
 \bibliographystyle{plainnat}
 
@@ -237,15 +534,27 @@ How test will be performed:
 
 \section{Appendix}
 
-This is where you can place additional information.
+
 
 \subsection{Symbolic Parameters}
 
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
+\renewcommand{\arraystretch}{1.2}
+\noindent \begin{longtable*}{l l p{12cm}} \toprule
+\textbf{symbol} & \textbf{unit} & \textbf{description}\\
+\midrule
+
+$\epsilon$ & none & The measure of the difference between results obtained with Library of Linear Algebraic Equation Solver
+and RStudio.\\
+
+\bottomrule
+\end{longtable*}
+
+
 \subsection{Usability Survey Questions?}
 
-This is a section that would be appropriate for some teams.
+Not Applicable
 
 \end{document}
