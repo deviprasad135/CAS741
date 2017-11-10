@@ -148,7 +148,7 @@ Devi Prasad Reddy Guttapati
 Automated unit testing will be done for the Library of Linear Algebraic Equation
 Solver. Unit Testing Framework and R's Test Class will be used in a combination
 for automated testing. Syntax checking will be done automatically by the
-compiler.
+compiler. The aim of testing is 100\%  code coverage .
 
 \subsection{Verification Tools}
 
@@ -156,20 +156,25 @@ The verification tools which will be used are as follows :
 
 \begin{enumerate}
 
-\item Comparison is done between the RStusio's own functional programs with the
-Library of Linear Algebraic Equation Solver by the Unit Testing Framework
-designed in RStudio. The following algorithm is used for comparison.
+\item The programming language used is R. Comparison is done between the
+RStusio's own functional programs with the Library of Linear Algebraic Equation
+Solver by the Unit Testing Framework designed in RStudio. The following
+algorithm is used for comparison.
 
 
-\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear Algebraic Equation Solver}}{Result_{RStudio}}\]
+\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear
+Algebraic Equation Solver}}{Result_{RStudio}}\]
 
 
 
 \item The framework for automated system testing is provided by using RStudio's Test Class .
 
-\item For program debugging and for checking syntax errors the program's IDE ( RStudio ) will be used as a Static Analyzer tool .
+\item For program debugging and for checking syntax errors the program's IDE (
+RStudio ) will be used as a Static Analyzer tool .
 
-\item covr is used for code coverage.
+\item covr which is an RStudio's library is used for code coverage.
+
+\item RStudio's unit test library will be used for performing unit tests on the code. 
 \end{enumerate}
 
 
@@ -192,7 +197,9 @@ whole by black box testing approach.
 
 \begin{enumerate}
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss elimination_simple}: Simple Linear system involving two equations and two variables}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss
+elimination_simple}: Simple Linear system involving two equations and two
+variables}}
 
 
 Type: Functional, Automated, System.
@@ -202,7 +209,7 @@ Initial State: Not applicable
 Input: A = $\begin{bmatrix} 
 2 & 3 \\
 4 & 9 
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 6 \\
 15 
 \end{bmatrix}$
@@ -214,7 +221,9 @@ Output: = x = $\begin{bmatrix}
 					
 How test will be performed: Automated system test
 					
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian elimination_three}: Linear system involving three equations and three variables}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian
+elimination_three}: Linear system involving three equations and three
+variables}}
 
 Type: Functional, Automated, System.
 					
@@ -224,7 +233,7 @@ Input: A =  $\begin{bmatrix}
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 5\\
 7\\
 8 
@@ -238,7 +247,8 @@ Output: x = $\begin{bmatrix}
 					
 How test will be performed: Automated system test
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian elimination_five}: Linear system involving six equations and six variables}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian
+elimination_five}: Linear system involving six equations and six variables}}
 
 Type: Functional, Automated, System.
 					
@@ -248,7 +258,7 @@ Input: A =  $\begin{bmatrix}
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 5\\
 7\\
 8 
@@ -262,7 +272,8 @@ Output: x = $\begin{bmatrix}
 					
 How test will be performed: Automated system test
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian elimination_three}: Linear system of equations which are singular}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gaussian
+elimination_three}: Linear system of equations which are singular}}
 
 Type: Functional, Automated, System.
 					
@@ -272,7 +283,7 @@ Input: A =$\begin{bmatrix}
 0 & 2 & -1 \\
 3 & -2 & 1\\
 3 & 2 & -1
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 5\\
 7\\
 8 
@@ -290,7 +301,8 @@ How test will be performed: Automated system test
 
 \begin{enumerate}
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan_simple}: Simple Linear system involving two equations and two variables}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan_simple}:
+Simple Linear system involving two equations and two variables}}
 
 
 Type: Functional, Automated, System.
@@ -300,7 +312,7 @@ Initial State: Not applicable
 Input: A = $\begin{bmatrix} 
 2 & 3 \\
 4 & 9 
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 6 \\
 15 
 \end{bmatrix}$
@@ -312,7 +324,9 @@ Output: = x = $\begin{bmatrix}
 					
 How test will be performed: Automated system test
 					
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan elimination_three}: Linear system involving three equations and three variables}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan
+elimination_three}: Linear system involving three equations and three
+variables}}
 
 Type: Functional, Automated, System.
 					
@@ -322,7 +336,7 @@ Input: A =  $\begin{bmatrix}
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 5\\
 7\\
 8 
@@ -336,7 +350,8 @@ Output: x = $\begin{bmatrix}
 					
 How test will be performed: Automated system test
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan_six}: Linear system involving six equations and six variables}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-gauss-jordan_six}: Linear
+system involving six equations and six variables}}
 
 Type: Functional, Automated, System.
 					
@@ -349,7 +364,7 @@ Input: A = $\begin{bmatrix}
 5 & 2 &-1 & -1 & 2 & 1 \\
 -3 & -1 & 2 & 3 & 1 &3 \\
 4 & 3 & 1 & -6 & -3 & -2
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b  = $\begin{bmatrix} 
  4\\
 20\\
 -15\\
@@ -379,7 +394,7 @@ Input: A =$\begin{bmatrix}
 0 & 2 & -1 \\
 3 & -2 & 1\\
 3 & 2 & -1
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 5\\
 7\\
 8 
@@ -400,7 +415,8 @@ How test will be performed: Automated system test
 
 \begin{enumerate}
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculation speed of  Library of Linear Algebraic Equation Solver.}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculation speed
+of Library of Linear Algebraic Equation Solver.}}
 
 
 Type: Non-Functional, Manual, Performance
@@ -411,7 +427,7 @@ Input/Condition: A = $\begin{bmatrix}
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 5\\
 7\\
 8 
@@ -419,7 +435,9 @@ Input/Condition: A = $\begin{bmatrix}
 					
 Output/Result: Time
 					
-How test will be performed: Manually Comparing the time of Library of Linear Algebraic Equation Solver.
+How test will be performed: Comparing the time of Library of Linear Algebraic
+Equation Solver for different type and different size of input by increasing
+number of equations.
 					
 
 
@@ -431,7 +449,8 @@ How test will be performed: Manually Comparing the time of Library of Linear Alg
 
 \begin{enumerate}
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculating the accuracy of  Library of Linear Algebraic Equation Solver.}}
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculating the
+accuracy of Library of Linear Algebraic Equation Solver.}}
 
 
 Type: Non-Functional, Manual, Accuracy
@@ -442,7 +461,7 @@ Input/Condition: A = $\begin{bmatrix}
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, B = $\begin{bmatrix} 
+\end{bmatrix}$, b = $\begin{bmatrix} 
 5\\
 7\\
 8 
@@ -452,9 +471,11 @@ Output/Result: $\epsilon_{Relative}$ will be calculated by comparing the result
 obtained by Library of Linear Algebraic Equation Solver and the RStudio's own
 functional programs by the following algorithm
 
-\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear Algebraic Equation Solver}}{Result_{RStudio}}\]
+\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear
+Algebraic Equation Solver}}{Result_{RStudio}}\]
 					
-How test will be performed: Manually Comparing the result of Library of Linear Algebraic Equation Solver.
+How test will be performed: Manually Comparing the result of Library of Linear
+Algebraic Equation Solver.
 					
 \end{enumerate}
 
@@ -462,7 +483,9 @@ How test will be performed: Manually Comparing the result of Library of Linear A
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-The following table shows the traceability mapping for test case and the requirements described in Commonality Analysis.
+The following table shows the traceability mapping for test case and the
+Instance Models described in Commonality Analysis since CA does not include
+requirements.
 
 \begin{table} [H]
   \caption{Requirements Traceability Matrix}
@@ -487,42 +510,20 @@ The following table shows the traceability mapping for test case and the require
 
 \section{Unit Testing plan}
 
-\subsection{Determinant Check Test}
 
-\begin{enumerate}
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-determinant1}: Simple }}
+The testing plan for Library of Linear Algebraic Equation Solver is divided into
+several unique steps. These sequence of steps also includes specific function
+unit tests. The code will be divided into several individual units of code. A
+unit is a smallest component of code which can be tested. These units of code
+are tested if they are fit to use or not.
 
-Type: Functional, Unit.
-					
-Initial State: Not applicable
-					
-Input: A = $\begin{bmatrix} 
-1 & 3 \\
-2 & 6 
-\end{bmatrix}$
-					
-Output: Determinant is 0, there is no solution
-					
-How test will be performed: Automated Unit Test
-					
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-determinant2}: Linear system involving three equations and three variables }}
+The code will be designed in several modules like Input/Output module, Gaussian
+Elimination Module, Gauss-Jordan Elimination Module. The basic plan for unit
+testing is that I will be using RStudio's unit testing packages. The tests from
+the functional requirements will also be used. The unit testing is a stage where
+we should test for code coverage. My aim is for 100\% code coverage.
 
-Type: Functional, Unit.
-					
-Initial State:  Not applicable
-					
-Input: A = $\begin{bmatrix} 
-1 & 3 & -2 \\
-3 & 5 & 6\\
-2 & 4 & 3
-\end{bmatrix}$
-					
-Output: Determinant is not 0,there is a unique solution
-					
-How test will be performed: Automated Unit Test 
-
-\end{enumerate}
 
 
 
@@ -546,15 +547,13 @@ Their values are defined in this section for easy maintenance.
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule
 
-$\epsilon$ & none & The measure of the difference between results obtained with Library of Linear Algebraic Equation Solver
-and RStudio.\\
+$\epsilon$ & none & The measure of the difference between results obtained with
+Library of Linear Algebraic Equation Solver and RStudio.\\
 
 \bottomrule
 \end{longtable*}
 
 
-\subsection{Usability Survey Questions?}
 
-Not Applicable
 
 \end{document}
