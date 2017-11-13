@@ -15,7 +15,8 @@
     linkcolor=red,
     urlcolor=blue
 }
-\usepackage[round]{natbib}
+
+%\input{../../Comments}
 
 \newcounter{acnum}
 \newcommand{\actheacnum}{AC\theacnum}
@@ -29,37 +30,33 @@
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
-\title{SE 3XA3: Software Requirements Specification\\Title of Project}
-
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
-}
-
-\date{\today}
-
-\input{../../Comments}
-
 \begin{document}
+
+\title{Module Guide: Library of Linear Algebraic Equation Solver} 
+\author{Devi Prasad Reddy Guttapati}
+\date{November 11, 2017}
 
 \maketitle
 
 \pagenumbering{roman}
-\tableofcontents
-\listoftables
-\listoffigures
 
-\begin{table}[bp]
-\caption{\bf Revision History}
+\section{Revision History}
+
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+November 11, 2017 & 1.0 & Initial Draft\\
+
 \bottomrule
 \end{tabularx}
-\end{table}
+
+\newpage
+
+\tableofcontents
+
+\listoftables
+
+\listoffigures
 
 \newpage
 
@@ -132,11 +129,13 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{acInputp}:] The format of input parameters.
+\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] The format of final output data.
+\item[\refstepcounter{acnum} \actheacnum \label{acAlgorithm}:] Change of algorithm for solving the linear algebraic equation.
+\item[\refstepcounter{acnum} \actheacnum \label{acMachine}:]Change of underlying abstract machine.
+
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -149,11 +148,11 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucComplex}:] When there are complex equations involved.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
   a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucNOsolution}:] If the number of equations are greater than the no of parameters where no functional form of the equation is repeated twice.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInfinetsolution}:]If the number of equations are less than the no of parameters where no functional form of the equation is repeated twice.  
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -165,7 +164,12 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mIC}:] Input Computing Module
+\item [\refstepcounter{mnum} \mthemnum \label{mOC}:] Output Computing Module
+\item [\refstepcounter{mnum} \mthemnum \label{mLL}:] Library of Linear Algebraic Equation Solver Module
+\item [\refstepcounter{mnum} \mthemnum \label{mGE}:] Gaussian Elimination Module
+\item [\refstepcounter{mnum} \mthemnum \label{mGJ}:] Gauss-Jordan Elimination Module
+
 \end{description}
 
 
@@ -179,19 +183,16 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} 
+& Input Computing Module\\
+& Output computing Module\\
+& Library of Linear Algebraic Equation Solver Module\\
+
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & Gaussian Elimination Module\\
+& Gauss-Jordan Elimination Module\\
+
 \bottomrule
 
 \end{tabular}
@@ -239,23 +240,42 @@ selected.
 \begin{description}
 \item[Secrets:]The contents of the required behaviours.
 \item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
+  the system as specified in the Commonality Analysis (CA)
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
+  module will need to change if there are changes in the CA.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Input Computing Module (\mref{mIC})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
+\item[Secrets:]The format and structure of the input data. The format and structure of the input parameter. The format and structure of the Software Constraints.
 \item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+  input parameters module. Stores the data type, numerical parameters and the parameters which are needed for the program. Verifies whether the the given input parameters matches and follows the Software constraints. Shows an error if the input does not follow the Software constraints.
+\item[Implemented By:] [Library of Linear Algebraic Equation Solver]
 \end{description}
 
-\subsubsection{Etc.}
+
+
+\subsubsection{Output Computing Module(\mref{mOC})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the Output Data.
+\item[Services:]Displays the output for the system of linear equations which are given as the input data.
+\item[Implemented By:] [Library of Linear Algebraic Equation Solver]
+\end{description}
+
+\subsubsection{Library of Linear Algebraic Equation Solver Module(\mref{mLL})}
+
+\begin{description}
+\item[Secrets:]Runs the program by harmonizing the different algorithms.
+\item[Services:]Coordinates and runs the main program.
+\item[Implemented By:] [Library of Linear Algebraic Equation Solver]
+\end{description}
+
+
+
 
 
 \subsection{Software Decision Module}
@@ -263,7 +283,7 @@ selected.
 \begin{description}
 \item[Secrets:] The design decision based on mathematical theorems, physical
   facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
+  \emph{not} described in the CA.
 \item[Services:] Includes data structure and algorithms used in the system that
   do not provide direct interaction with the user. 
   % Changes in these modules are more likely to be motivated by a desire to
@@ -271,12 +291,29 @@ selected.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Gaussian Elimination Module(\mref{mGE})}
+
+\begin{description}
+\item[Secrets:]Algoritham for solving linear algebraic equations for the given input.
+\item[Services:]Calculates the output based on the input data.
+\item[Implemented By:] [Library of Linear Algebraic Equation Solver]
+\end{description}
+
+\subsubsection{Gauss-Jordan Elimination Module(\mref{mGJ})}
+
+\begin{description}
+\item[Secrets:]Algoritham for solving linear algebraic equations for the given input.
+\item[Services:]Calculates the output based on the input data.
+\item[Implemented By:] [Library of Linear Algebraic Equation Solver]
+\end{description}
+
+
+
 
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
-requirements and between the modules and the anticipated changes.
+Instance Models and between the modules and the anticipated changes.
 
 % the table should use mref, the requirements should be named, use something
 % like fref
@@ -286,20 +323,14 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+
+
+IM1 & \mref{mHH}, \mref{mIC}, \mref{mOC}, \mref{mLL}, \mref{mGE}, \mref{mGJ}\\
+IM2 & \mref{mHH}, \mref{mIC}, \mref{mOC}, \mref{mLL}, \mref{mGE}, \mref{mGJ}\\
+
 \bottomrule
 \end{tabular}
-\caption{Trace Between Requirements and Modules}
+\caption{Trace Between Instance Models and Modules}
 \label{TblRT}
 \end{table}
 
@@ -309,18 +340,12 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInput} & \mref{mIC}\\
+\acref{acInputp} & \mref{mIC}\\
+\acref{acOutput} & \mref{mOC}\\
+\acref{acAlgorithm} & \mref{mGE} \mref{mGJ}\\
+\acref{acMachine} & \mref{mLL}\\
+
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -342,7 +367,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UsesHierarchy.PNG}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
