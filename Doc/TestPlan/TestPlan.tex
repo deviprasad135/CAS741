@@ -104,6 +104,8 @@ The following section gives an overview of the Verification and Validation ( V
 \& V ) plan for the Library of Linear Algebraic Equation Solver. This section
 also explains the purpose, scope and overview of the document.
 
+\wss{An explicit web-link to your GitHub repo would be nice.}
+
 \subsection{Purpose}
 
 The purpose of this document is to plan the Verification and Validation process
@@ -122,6 +124,9 @@ The scope of testing is limited to Library of Linear Algebraic Equation Solver.
 The library includes two linear algebraic solving functions. The scope is
 limited to these two solving functions.
 
+\wss{Reference your SRS document}
+
+\wss{Explicitly state programming language}
 
 \subsection{Overview of Document}
 
@@ -137,7 +142,8 @@ system testing and unit testing are provided.
 Software which is tested is Library of Linear Algebraic Equation Solver. The
 library contains two linear algebraic equation solving algorithms. Given the
 initial values of algebraic equation A and B, the program calculates the final
-value x by using numerical methods.
+value x by using numerical methods.  \wss{When you use mathematical symbols, put
+  them in math mode ($x$).}
 
 \subsection{Test Team}
 
@@ -152,25 +158,30 @@ compiler. The aim of testing is 100\%  code coverage .
 
 \subsection{Verification Tools}
 
-The verification tools which will be used are as follows :
+The verification tools which will be used are as follows:
 
 \begin{enumerate}
 
 \item The programming language used is R. Comparison is done between the
-RStusio's own functional programs with the Library of Linear Algebraic Equation
-Solver by the Unit Testing Framework designed in RStudio. The following
-algorithm is used for comparison.
+  RStusio's \wss{proof read} own functional programs with the Library of Linear
+  Algebraic Equation Solver by the Unit Testing Framework designed in
+  RStudio. The following algorithm \wss{This is an equation, not an algorithm} is used for comparison.
 
 
 \[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear
 Algebraic Equation Solver}}{Result_{RStudio}}\]
 
-
+\wss{The symbols in this equation are far too long.  You also should use a
+  non-italic font for the subscripts.  For instance, you could use
+  $\epsilon_\text{rel}$, $x_\text{R}$, $x_\text{LAES}$, where $x$ is the
+  solution of the linear system of equations. You also need to do the equation
+  component wise and then find the norm, so that you get one scalar value to
+  represent the error.  $\epsilon_\text{rel} = \frac{|x_\text{R} - x_\text{LAES}|}{|x|}$}
 
 \item The framework for automated system testing is provided by using RStudio's Test Class .
 
 \item For program debugging and for checking syntax errors the program's IDE (
-RStudio ) will be used as a Static Analyzer tool .
+RStudio ) will be used as a Static Analyzer tool . \wss{proof read}
 
 \item covr which is an RStudio's library is used for code coverage.
 
@@ -181,7 +192,9 @@ RStudio ) will be used as a Static Analyzer tool .
 
 \subsection{Non-Testing Based Verification}
 		
-Not Applicable
+Not Applicable  \wss{Your project is quite simple.  To get a higher grade, you
+  will need to do something beyond just testing.  Others in the class are
+  looking at code inspection and code walkthroughs.}
 
 \section{System Test Description}
 
