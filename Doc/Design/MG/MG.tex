@@ -16,7 +16,7 @@
     urlcolor=blue
 }
 
-%\input{../../Comments}
+\input{../../Comments}
 
 \newcounter{acnum}
 \newcommand{\actheacnum}{AC\theacnum}
@@ -61,6 +61,9 @@ November 11, 2017 & 1.0 & Initial Draft\\
 \newpage
 
 \pagenumbering{arabic}
+
+\wss{Why did you comment out Comments as an input file?  I had to uncomment the
+  LaTeX code so that I can ad comments.}
 
 \section{Introduction}
 
@@ -250,13 +253,21 @@ selected.
 \subsubsection{Input Computing Module (\mref{mIC})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data. The format and structure of the input parameter. The format and structure of the Software Constraints.
+\item[Secrets:]The format and structure of the input data. The format and
+  structure of the input parameter. The format and structure of the Software
+  Constraints.
 \item[Services:]Converts the input data into the data structure used by the
-  input parameters module. Stores the data type, numerical parameters and the parameters which are needed for the program. Verifies whether the the given input parameters matches and follows the Software constraints. Shows an error if the input does not follow the Software constraints.
+  input parameters module. \wss{You don't have an input parameters module.}
+  Stores the data type, numerical parameters and the parameters which are needed
+  for the program. Verifies whether the the \wss{proof read} given input
+  parameters matches and follows the Software constraints. Shows an error if the
+  input does not follow the Software constraints.
 \item[Implemented By:] [Library of Linear Algebraic Equation Solver]
 \end{description}
 
-
+\wss{Your input module should modify the state of the matrix and vector objects
+  that define your problem.  As you'll see below, I've added the idea of a
+  matrix module in your software decision hiding category.}
 
 \subsubsection{Output Computing Module(\mref{mOC})}
 
@@ -307,7 +318,9 @@ selected.
 \item[Implemented By:] [Library of Linear Algebraic Equation Solver]
 \end{description}
 
-
+\wss{You should add a module to hide the data structure for a matrix.  You could
+  have a design that has a separate module for vectors, but I think we should
+  keep things simple and just represent vectors as 1D matrices.}
 
 
 \section{Traceability Matrix} \label{SecTM}
@@ -372,7 +385,21 @@ because they use modules from the lower levels.
 \label{FigUH}
 \end{figure}
 
+\wss{If modules are on the same level (like Input, Gaussian Elim etc, you should
+  draw them at an equal height in the hierarchy.  You'll need to add the matrix
+  module to your design.}
+
 %\section*{References}
+
+\wss{The most significant challenge for your MIS will be documenting the matrix
+  module that I mentioned above.  The matrix module hides the data structure for
+  a 2d array, along with common operations on matrices.  You will document this
+  as a template module, to reflect the fact that in the program you will have
+  multiple objects of this type.}
+
+\wss{Good start for the design.  Remember that you may have to modify the design
+  as you work through the MIS and gain a deeper understanding of how your
+  modules interact.}
 
 \bibliographystyle {plainnat}
 \bibliography {MG}
