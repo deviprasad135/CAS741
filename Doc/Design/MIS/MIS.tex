@@ -15,10 +15,11 @@
 \usepackage{float}
 \usepackage{siunitx}
 \usepackage{booktabs}
-\usepackage{multirow}
+\usepackage{multirow} 
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{fullpage}
+\usepackage{listings}
 
 \hypersetup{
 bookmarks=true,     % show bookmarks bar?
@@ -33,7 +34,7 @@ urlcolor=cyan          % color of external links
 
 %\input{../../Comments}
 
-\newcommand{\progname}{Program Name}
+\newcommand{\progname}{Library of Linear Algebraic Equation Solver}
 
 \begin{document}
 
@@ -52,8 +53,8 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Date 1 & 1.0 & Initial Draft\\
+
 \bottomrule
 \end{tabularx}
 
@@ -74,22 +75,23 @@ See SRS Documentation at:  \url{https://github.com/deviprasad135/CAS741/blob/mas
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-%\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications for Library of Linear Algebraic Equation Solver. 
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{https://github.com/deviprasad135/CAS741}.  %\wss{provide the url for your repo}
+found at the mentioned link below:
+
+\url{https://github.com/deviprasad135/CAS741}.  
 
 \section{Notation}
 
 %\wss{You should describe your notation.  You can use what is below as
   %a starting point.}
 
-The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
+The structure of the MIS for modules comes from \cite{hoffman1999software},
 with the addition that template modules have been adapted from
-\cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
-\citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
+\cite{ghezzi2002fundamentals}.  The mathematical notation comes from Chapter 3 of
+\cite{hoffman1999software}.  For instance, the symbol := is used for a
 multiple assignment statement and conditional rules follow the form $(c_1
 \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
 
@@ -140,7 +142,10 @@ The following table is taken directly from the Module Guide document for this pr
 
 \midrule
 
-\multirow{2}{0.3\textwidth}{Software Decision}  & Gaussian Elimination Module\\
+\multirow{2}{0.3\textwidth}{Software Decision}  
+& Matrix Module\\
+
+& Gaussian Elimination Module\\
 
 & Gauss-Jordan Elimination Module\\
 
@@ -155,7 +160,7 @@ The following table is taken directly from the Module Guide document for this pr
 \newpage
 ~\newpage
 
-\section{MIS of {Library of Linear Algebraic Equation Solver Module}} \label{llaem} %\wss{Use labels for cross-referencing}
+\section{MIS of {Library of Linear Algebraic Equation Solver Module}} \label{modllaes} %\wss{Use labels for cross-referencing}
 
 \subsection{Module}
 
@@ -164,21 +169,19 @@ LLAES
 %\wss{Short name for the module}
 
 \subsection{Uses}
-This is the top level module which interacts with the external program. This module uses all other modules in the library. 
+IC (Section \ref{modic}), OC (Section \ref{modoc}), Matrix (Section \ref{modmatrix}), GE (Section \ref{modge}), GJE (Section \ref{modgje})
 
 
 \subsection{Syntax}
 
-\subsubsection{Exported Access Programs}
-
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{4cm} p{2cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-Linear Algebraic Equation Methods & Linear Algebraic Equation Method & - & - \\
-A & $n \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
-b & $1 \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
+Linear\_Algebraic Equation\_Solving Methods & Linear\_Algebraic
+Equation\_Solving Method $\in {1, 2}$& - & - \\
+
 \hline
 \end{tabular}
 \end{center}
@@ -187,21 +190,182 @@ b & $1 \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
 
 \subsubsection{State Variables}
 
+None
+
 
 \subsubsection{Access Routine Semantics}
 
 \noindent %\wss{accessProg}():
 \begin{itemize}
-\item transition: %\wss{if appropriate} 
-\item output: %\wss{if appropriate} 
-\item exception: %\wss{if appropriate} 
+\item transition: None %\wss{if appropriate} 
+\item output: None%\wss{if appropriate} 
+\item exception: None%\wss{if appropriate} 
+\item pseudocode: 
+\begin{lstlisting}
+if (option = 1)
+   then solve using Gaussian Elimination Method
+if (option = 2)
+   then solve using Gauss-Jordan Elimination Method 
+\end{lstlisting}
 \end{itemize}
 
-\section{MIS of {Gaussian Elimination  Module}} \label{gem}
+\newpage
+
+
+\section{MIS of {Input Computing Module}} \label{modic} %\wss{Use labels for cross-referencing}
 
 \subsection{Module}
 
-GEM
+IC
+
+%\wss{Short name for the module}
+
+\subsection{Uses}
+Matrix (Section \ref{modmatrix}), GE (Section \ref{modge}), GJE (Section \ref{modgje}) 
+
+
+\subsection{Syntax}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+A & $n \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & Complex Numbers \\
+b & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & Complex Numbers \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+
+\subsubsection{Access Routine Semantics}
+
+\noindent %\wss{accessProg}():
+\begin{itemize}
+\item transition: None %\wss{if appropriate} 
+\item output: None %\wss{if appropriate} 
+\item exception: None %\wss{if appropriate} 
+\end{itemize}
+
+\newpage
+
+
+\section{MIS of {Output Computing Module}} \label{modoc} %\wss{Use labels for cross-referencing}
+
+\subsection{Module}
+
+OC
+
+%\wss{Short name for the module}
+
+\subsection{Uses}
+
+None
+
+\subsection{Syntax}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+
+
+x & - & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent %\wss{accessProg}():
+\begin{itemize}
+\item transition: None%\wss{if appropriate} 
+\item output: None%\wss{if appropriate} 
+\item exception: None%\wss{if appropriate}
+\item pseudocode: 
+
+\begin{lstlisting}
+if (displayresult)
+   {print(x);}
+end if
+\end{lstlisting}
+
+\end{itemize}
+
+\newpage
+
+
+\section{MIS of {Matrix Module}} \label{modmatrix} %\wss{Use labels for cross-referencing}
+
+\subsection{Module}
+
+Matrix
+
+%\wss{Short name for the module}
+
+\subsection{Uses}
+GE (Section \ref{modge}), GJE (Section \ref{modgje}), OC (Section \ref{modoc})
+
+
+\subsection{Syntax}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+A & $\mathbb{R}$ & $n \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
+b & $\mathbb{R}$ & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent %\wss{accessProg}():
+\begin{itemize}
+\item transition: None%\wss{if appropriate} 
+\item output: None%\wss{if appropriate} 
+\item exception: None%\wss{if appropriate} 
+\item pseudocode:
+
+\begin{lstlisting}
+function{
+         A = (Input of Real Numbers)
+         n = $(length (A))^{1/2}$
+         A = matrix(A, row = n, col = n, byrow = TRUE)
+         }
+\end{lstlisting}
+
+\end{itemize}
+
+\newpage
+
+
+\section{MIS of {Gaussian Elimination  Module}} \label{modge}
+
+\subsection{Module}
+
+GE
 
 %\wss{Short name for the module}
 
@@ -211,82 +375,66 @@ This module is used to solve the system of Linear Algebraic Equations.
 
 \subsection{Syntax}
 
-\subsubsection{Exported Access Programs}
-
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 
-A & $n \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
-b & $1 \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
+A & $n \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & always\_a\_square\_matrix no\_singular\_matrix\\
+b & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
+x & - & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
 \hline
 \end{tabular}
 \end{center}
 
 \subsection{Semantics}
-Pseudo Code
 
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent %\wss{accessProg}():
+\begin{itemize}
+\item transition: None%\wss{if appropriate} 
+\item output: None%\wss{if appropriate} 
+\item exception: None%\wss{if appropriate}
+\item pseudocode:
+\begin{lstlisting}[mathescape=true]
 for $k = 1$ to $n-1$
-
-find a pivot p such that
-
-$|a_{pk}| \geq |a_{ik}|$ for $K \leq i \leq n$
-
-if $|a_{pk}| = 0$ do
-
-return "Singular Matrix"
-
-end the entire loop
-
-else interchange row p and k
-
-for $i = k+1$ to $n$
-
-$factor_{ik} = \dfrac{a_{ik}}{a_{kk}}$
-
-for $j = k+1$ to $n$
-
-$a_{ij} = a_{ij} - factor_{ik} * a_{kj}$
-
-end for
-
-end for
-
+    find a pivot p such that
+    $|a_{pk}| \geq |a_{ik}|$ for $K \leq i \leq n$
+    if $|a_{pk}| = 0$ do
+        return "Singular Matrix"
+        end the entire loop
+    else 
+        interchange row p and k
+        
+    for $i = k+1$ to $n$
+        $factor_{ik} = \dfrac{a_{ik}}{a_{kk}}$
+        for $j = k+1$ to $n$
+            $a_{ij} = a_{ij} - factor_{ik} * a_{kj}$
+        end for
+    end for
 end for
 
 $x_n = \dfrac{b_n^{'}}{a_{nn}} $
-
 for i in n-1 to 1
-
-for j in i+1 to n
-
-$sum = a_{ij}x_j$
-
+    for j in i+1 to n
+        $sum = a_{ij}x_j$
+    end for
+    $x_i = \dfrac{b_n^{'} - sum} {a_{ii}}$
 end for
-
-$x_i = \dfrac{b_n^{'} - sum} {a_{ii}}$
-
-end for
-
-\subsubsection{State Variables}
-
-
-\subsubsection{Access Routine Semantics}
-
-\noindent %\wss{accessProg}():
-\begin{itemize}
-\item transition: %\wss{if appropriate} 
-\item output: %\wss{if appropriate} 
-\item exception: %\wss{if appropriate} 
+\end{lstlisting}
 \end{itemize}
 
-\section{MIS of {Gauss-Jordan Elimination  Module}} \label{gjm}
+\section{MIS of {Gauss-Jordan Elimination  Module}} \label{modgje}
 
 \subsection{Module}
 
-GJEM
+GJE
 
 %\wss{Short name for the module}
 
@@ -296,99 +444,79 @@ This module is used to solve the system of Linear Algebraic Equations.
 
 \subsection{Syntax}
 
-\subsubsection{Exported Access Programs}
-
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 
-A & $n \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
-b & $1 \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
+A & $n \times n$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - &  always\_a\_square\_matrix no\_singular\_matrix \\
+b & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & - \\
+x & - & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
 \hline
 \end{tabular}
 \end{center}
 
 \subsection{Semantics}
 
-Pseudo Code
-
-for $k = 1$ to $n-1$
-
-find a pivot p such that
-
-$|a_{pk}| \geq |a_{ik}|$ for $K \leq i \leq n$
-
-if $|a_{pk}| = 0$ do
-
-return "Singular Matrix"
-
-end the entire loop
-
-else interchange row p and k
-
-for $i = k+1$ to $n$
-
-$factor_{ik} = \dfrac{a_{ik}}{a_{kk}}$
-
-for $j = k+1$ to $n$
-
-$a_{ij} = a_{ij} - factor_{ik} * a_{kj}$
-
-end for
-
-end for
-
-end for
-
-Assuming that the matrix is not singular
-
-for k = n to 2
-
-for i = k+1 to 1
-
-$factor_{ik} = \dfrac{a_{ik}}{a_{kk}}$
-
-for j = k-1 to 1
-
-$a_{ij} = a_{ij} - factor_{ik} * a_{kj}$
-
-end for
-
-end for
-
-end for
-
-for i in 1 to n
-
-$x_i = \dfrac{b_n^{'}} {a_{ii}}$
-
-end for
-
-
-
 \subsubsection{State Variables}
 
+None
 
 \subsubsection{Access Routine Semantics}
 
 \noindent %\wss{accessProg}():
 \begin{itemize}
-\item transition: %\wss{if appropriate} 
-\item output: %\wss{if appropriate} 
-\item exception: %\wss{if appropriate} 
+\item transition: None%\wss{if appropriate} 
+\item output: None%\wss{if appropriate} 
+\item exception: None%\wss{if appropriate} 
+\item pseudocode:
+\begin{lstlisting}[mathescape=true]
+
+for $k = 1$ to $n-1$
+    find a pivot p such that
+    $|a_{pk}| \geq |a_{ik}|$ for $K \leq i \leq n$
+    if $|a_{pk}| = 0$ do
+        return "Singular Matrix"
+        end the entire loop
+    else 
+        interchange row p and k
+        
+    for $i = k+1$ to $n$
+        $factor_{ik} = \dfrac{a_{ik}}{a_{kk}}$
+        for $j = k+1$ to $n$
+            $a_{ij} = a_{ij} - factor_{ik} * a_{kj}$
+        end for
+    end for
+end for
+
+Assuming that the matrix is not singular
+for k = n to 2
+    for i = k+1 to 1
+        $factor_{ik} = \dfrac{a_{ik}}{a_{kk}}$
+        for j = k-1 to 1
+            $a_{ij} = a_{ij} - factor_{ik} * a_{kj}$
+        end for
+    end for
+end for
+
+for i in 1 to n
+    $x_i = \dfrac{b_n^{'}} {a_{ii}}$
+end for
+
+\end{lstlisting}
 \end{itemize}
 
 
 \newpage
 
-\bibliographystyle {plainnat}
-\bibliography {../../../ReferenceMaterial/References}
+\bibliographystyle{plainnat}
+\bibliography{ref}
 
 \newpage
 
 \section{Appendix} \label{Appendix}
+Not Applicable
 
 %\wss{Extra information if required}
 
