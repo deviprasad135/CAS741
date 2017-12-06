@@ -32,7 +32,7 @@ urlcolor=cyan          % color of external links
 
 \usepackage{array}
 
-%\input{../../Comments}
+\input{../../Comments}
 
 \newcommand{\progname}{Library of Linear Algebraic Equation Solver}
 
@@ -49,6 +49,9 @@ urlcolor=cyan          % color of external links
 \pagenumbering{roman}
 
 \section{Revision History}
+
+\wss{You commented out the input for Comments.  I had to uncomment it so that I
+  could add comments with the wss command.}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -75,7 +78,10 @@ See SRS Documentation at:  \url{https://github.com/deviprasad135/CAS741/blob/mas
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for Library of Linear Algebraic Equation Solver. 
+The following document details the Module Interface Specifications for Library
+of Linear Algebraic Equation Solver.  \wss{You should usually avoid one sentence
+  paragraphs.  These two paragraphs would certainly make sense combined
+  together.}
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
@@ -157,6 +163,9 @@ The following table is taken directly from the Module Guide document for this pr
 \label{TblMH}
 \end{table}
 
+\wss{Rather than Input Computing, you should just say Input.  You don't really
+  compute the input.  Output is also a simpler name than Output Computing.}
+
 \newpage
 ~\newpage
 
@@ -186,6 +195,10 @@ Equation\_Solving Method $\in {1, 2}$& - & - \\
 \end{tabular}
 \end{center}
 
+\wss{Rather than use 1, 2, you should introduce an enumerated type that has two
+  values: GaussElim, GaussJordan.  You could export this new type, rather than
+  define it in the input field}
+
 \subsection{Semantics}
 
 \subsubsection{State Variables}
@@ -208,6 +221,12 @@ if (option = 2)
    then solve using Gauss-Jordan Elimination Method 
 \end{lstlisting}
 \end{itemize}
+
+\wss{You have no transition, no output, no exceptions, so your module doesn't
+  actually do anything.  What you enter under pseudocode should actually be
+  entered under transition.}
+
+\wss{You actually aren't passing any arguments to your solver methods.}
 
 \newpage
 
@@ -237,6 +256,9 @@ b & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - & Complex Numbers \\
 \end{tabular}
 \end{center}
 
+\wss{Your type for A and b is not correct.  The type for a matrix can be
+  represented as $\mathbb{R}^{n \times n}$}
+
 \subsection{Semantics}
 
 \subsubsection{State Variables}
@@ -252,6 +274,11 @@ None
 \item output: None %\wss{if appropriate} 
 \item exception: None %\wss{if appropriate} 
 \end{itemize}
+
+\wss{This module doesn't actually do anything!  There is not transition, not
+  output and no exceptions.  Rather than an Input module, you can just use
+  multiple instances of your Matrix module to define the input to your solver
+  module.}
 
 \newpage
 
@@ -282,6 +309,8 @@ x & - & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
 \end{tabular}
 \end{center}
 
+\wss{The type for x is not expressed correctly.}
+
 \subsection{Semantics}
 
 \subsubsection{State Variables}
@@ -304,6 +333,9 @@ end if
 \end{lstlisting}
 
 \end{itemize}
+
+\wss{If you are printing output to the screen, or to a file, you need an
+  environment variable.}
 
 \newpage
 
@@ -332,6 +364,15 @@ b & $\mathbb{R}$ & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
 \hline
 \end{tabular}
 \end{center}
+
+\wss{You need to think about this module more.  The input cannot be a single
+  real number.  The input is a sequence of real numbers.  You also need state
+  variables.  You can look at the sequence module example in the lecture slides,
+  combined with the examples for Abstract Data Types (ADTs).  For an Abstract
+  Data Type you need to use the ``Template Module,'' rather than ``Module.''
+  You don't actually represent A and b together in this module.  The Matrix
+  module defines a new ADT.  You can create an A object and a b object.  This
+  about the constructor for each matrix and about the getters that makes sense.}
 
 \subsection{Semantics}
 
@@ -387,6 +428,9 @@ x & - & $n \times 1$ matrix $\in$ $\mathbb{R}$ and n $> 0$ & - \\
 \hline
 \end{tabular}
 \end{center}
+
+\wss{The type for A and b should be Matrix.  That is why you are defining a
+  Matrix type.}
 
 \subsection{Semantics}
 
@@ -512,6 +556,10 @@ end for
 
 \bibliographystyle{plainnat}
 \bibliography{ref}
+
+\wss{Why did you redo the Bib entry for HoffmanAndStrooper1995?  You could have
+  saved time (and improved the reference information) by just using the entry in
+  the course repo, under References.bib.}
 
 \newpage
 
