@@ -16,6 +16,7 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{tikz}
 
 \usepackage[round]{natbib}
 
@@ -30,7 +31,7 @@
     urlcolor=cyan           % color of external links
 }
 
-\input{../Comments}
+%\input{../Comments}
 
 % For easy change of table widths
 \newcommand{\colZwidth}{1.0\textwidth}
@@ -94,6 +95,8 @@
 \title{Commonality Analysis for a Library of Linear Algebraic Equation Solver } 
 \author{Devi Prasad Reddy Guttapati}
 \date{October 4, 2017}
+
+
 	
 \maketitle
 \pagebreak
@@ -133,16 +136,15 @@ systems.  The symbols are listed in alphabetical order.
 \midrule
 
 
-$A$ & \text{-} & known \textit{m $\times$ n} matrix \wss{Remove texit, just use
-  equation environment.}\\
-$x$ & \text{-} & \textit{n}-vector\\
-$b$ & \text{-} & \textit{m}-vector\\
-M$_{1}$ & \text{-} & elementary elimination matrix\\
+$A$ & \text{-} & known $m \times n$ matrix \\
+$x$ & \text{-} & $n$-vector\\
+$b$ & \text{-} & $m$-vector\\
+$M_1$ & \text{-} & elementary elimination matrix\\
 $L$ & \text{-} & lower triangular matrix\\
 $U$ & \text{-} & upper triangular matrix\\ 
-A$^{-1}$ & \text{-} & inverse of matrix \\
+$A^{-1}$ & \text{-} & inverse of matrix \\
 $I$ & \text{-} & identity matrix\\
-{${|A|}$} & \text{-} & determinant of matrix\\ 
+${|A|}$ & \text{-} & determinant of matrix\\ 
 
 \bottomrule
 \end{longtable*}
@@ -179,20 +181,20 @@ $I$ & \text{-} & identity matrix\\
 
 Many of the relationships in nature are linear, that means their effects are
 proportional to their causes. For example in Mechanics if we take Newtons second
-law of motion, \textbf{F = ma} says that force is proportional to acceleration
+law of motion, \textbf{$F = ma$} says that force is proportional to acceleration
 and mass is the proportionality constant. For example in Electricity if we take
-Ohm's Law, \textbf{V = iR} voltage across the conductor is proportional to the
+Ohm's Law, \textbf{$V = iR$} voltage across the conductor is proportional to the
 current flowing though it and resistance is the proportionality constant. These
 examples shows us the importance of linear equations and solving them. In matrix
 notation the general form of linear equation is
 
- \centerline{\textbf{Ax = b}}
+ \centerline{\textbf{$Ax = b$}}
 
-where \textbf{A} is known \textit{m $\times$ n} matrix, \textbf{b} is an
-\textit{m}-vector and \textbf{x} is an \textit{n}-vector. If \textbf{x} is
-known, then such a linear relationship enables us to predict effect \textbf{b}
-from cause \textbf{x} by matrix-vector multiplication \textbf{b} =
-\textbf{A}\textbf{x}.
+where \textbf{$A$} is known \textit{$m \times n$} matrix, \textbf{$b$} is an
+\textit{m}-vector and \textbf{$x$} is an \textit{n}-vector. If \textbf{$x$} is
+known, then such a linear relationship enables us to predict effect \textbf{$b$}
+from cause \textbf{$x$} by matrix-vector multiplication \textbf{$b$} =
+\textbf{$A$}\textbf{$x$}.
 
 The most important problem in technical computing is the solution of system
 linear equations.
@@ -220,10 +222,10 @@ aims to solve the equations and give the correct output.
 
 \subsection{Characteristics of Intended Reader} 
 
-The intended readers who read this document must have basic knowledge about
+The intended readers who read this document, must have basic knowledge about
 linear algebraic equations and the different methods of solving linear algebraic
-equations which are typically covered in first and second year Linear Algebra
-courses . \wss{Watch the spacing in your sentences with punctuation.}
+equations, which are typically covered in first and second year Linear Algebra courses .
+
 
 \subsection{Organization of Document}
 
@@ -251,23 +253,19 @@ The figure shows the system context. The user gives the input in the form of
 linear equations to the solver and the solver aims to give the solution to the
 equations as the output.
 
-\wss{The user likely makes more sense as program rather than a person.}
+
 
 \begin{itemize}
 \item User Responsibilities:
 \begin{itemize}
 \item The main responsibility of the user is to give the appropriate input.
 \item User must make sure that the input given is error free.
-\item User must enter the values in matrix form. \wss{Does the user really need
-    to put the data in the correct format?  If it isn't in the correct software,
-    the software should be able to detect this.}
+\item User must declare the method by which the linear system must be solved.
 \end{itemize}
 \item \progname{} Responsibilities:
 \begin{itemize}
 \item The main responsibility of the linear algebraic equation solver is to
-  identify the input which is improper or invalid. \wss{This point shows that
-    your software does check the format, so you don't need the last point in the
-    user responsibility list.}
+identify the input which is improper or invalid.
 \item Detect data type mismatch, such as a string of characters instead of a
   floating point number.
 \item the ultimate responsibility of the linear algebraic equation solver is to
@@ -278,8 +276,7 @@ solve the equations and to produce the output.
 \subsection{User Characteristics} \label{SecUserCharacteristics}
 
 The end user of \progname{} should have an understanding of undergraduate Level
-of linear algebra.  \wss{What level course?  Mathematics is quite standardized,
-  so saying Linear Algebra 1, would be helpful.}
+of Linear algebra 1 .
 
 \subsection{System Constraints}
 
@@ -307,28 +304,24 @@ easier to correctly understand the requirements:
 
 \begin{itemize}
 
-\item \textbf{A} is a known \textit{m $\times$ n} matrix 
 
-\item \textbf{b} is an \textit{m}-vector 
+\item \textbf{$A^{-1}$} is the inverse of the matrix \textbf{$A$}
 
-\item \textbf{x} is an \textit{n}-vector
+\item rank(\textbf{$A$}) = The rank of a matrix is the maximum number
+of linearly independent rows or columns it contains.
 
-\item \textbf{A$^{-1}$} is the inverse of the matrix \textbf{A}
+\item det(\textbf{$A$}) is determinant of matrix \textbf{$A$}
 
-\item rank(\textbf{A}) = \textit{n} the rank of a matrix is the maximum number
-of linearly independent rows or columns it contains. \wss{the rank of a matrix
-  is not always $n$.}
+\item square matrix = A matrix is said to be a square matrix if and only if it has the same number of rows and columns.
 
-\item det(\textbf{A}) is determinant of matrix \textbf{A}
+\item singular matrix = A square matrix is said to be a singular matrix if it's determinant is "0".
+
+\item upper triangular matrix = A square matrix is said to be upper triangular matrix if and only if all the entries below the main diagonal are zero.
+
+\item lower triangular matrix = A square matrix is said to be lower triangular matrix if and only if all the entries above the main diagonal are zero.
 
 
 \end{itemize}
-
-\wss{The terminology you have listed is mostly a repetition of symbols you are
-  using elsewhere.  Terminology is more for definitions of terms.  You could
-  define terms like singular, condition number etc.  Your definition of rank
-  seems like an appropriate item to list here.  The information above is a
-  better fit for the list of symbols.}
 
 \pagebreak
 
@@ -346,49 +339,50 @@ Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{D_matrix}\\
 \hline
 Label& \bf Matrix Representation of the Linear Algebraic Equation\\
 \hline
-Symbol & \textbf{Ax = b}\\
+Symbol & \textbf{$Ax = b$}\\
 \hline
 
   Equation&\[
 \left\{ 
 \begin{array}{c}
-ax_1+bx_2=b_1 \\ 
-cx_1+dx_2=b_2 \\ 
-
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 + ........ + a_{1m}x_m = b_1 \\ 
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 + ........ + a_{2m}x_m = b_2 \\
+\hspace{.4cm}\vdots \hspace{1.3cm}\vdots \hspace{1.2cm}\vdots \hspace{2.6cm}\vdots \hspace{1.5cm}\vdots \\
+a_{n1}x_1 + a_{n2}x_2 + a_{n3}x_3 + ........ + a_{nm}x_m = b_n \\
 \end{array}
 \right. 
 \]\\
   \hline
   Description 
-        &\textbf{A} is a known \textit{m x n} matrix that is 
+        &\textbf{$A$} is a known \textit{m x n} matrix that is 
 $\begin{bmatrix}
-  a & b\\
-  c & d
+  a_{11} & a_{12} & a_{13} & \dots & a_{1m}\\
+  a_{21} & a_{22} & a_{23} & \dots & a_{2m}\\
+  \vdots & \vdots & \ddots & &\vdots\\
+   \vdots & \vdots &  & \ddots &\vdots\\
+   a_{n1} & a_{n2} & a_{n3} & \dots & a_{nm}
+   
 \end{bmatrix}$.\\
-        & \textbf{b} is an \textit{m}-vector that is
+        & \textbf{$b$} is an \textit{m}-vector that is
 $\begin{bmatrix}
   b_1\\
-  b_2
+  b_2\\
+  \vdots\\
+  b_n
 \end{bmatrix}$.\\
-        &\textbf{x} is an \textit{n}-vector that is 
+        &\textbf{$x$} is an \textit{n}-vector that is 
 $\begin{bmatrix}
   x_1\\
-  x_2
-\end{bmatrix}$. \wss{Your definitions are just for a two by two matrix.  You
-  should explain what it means to have an $m \times n$ matrix.}\\
+  x_2\\
+  \vdots\\
+  x_m
+\end{bmatrix}$.\\
   \hline
   Source&
-       Scientific Computing, An Introductory Survey, Second Edition by MICHEL
-          \wss{spell check}
-          T. HEATH, Chapter 2. \wss{Use BibTeX for this and put the reference in
-          your list of references}
+      \cite{heath2002scientific}
   \\
   \hline
-  Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}],
-             [\tref{T_LAE}], [\aref{A_explicit}], [\aref{A_matrixform}]
-             \wss{I've had a look at some of these reference by items and they
-             don't actually have references.  You have to actually use the
-             references to put this in.}\\
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\tref{T_LAE}], [\aref{A_square}] \\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -402,34 +396,87 @@ $\begin{bmatrix}
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
 \hline
 \rowcolor[gray]{0.9}
-Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{D_inverse}\\
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{D_identity}\\
 \hline
-Label& \bf Inverse of a Matrix\\
+Label& \bf Identity Matrix\\
 \hline
-Symbol & \textbf{A$^{-1}$}\\
+Symbol & \textbf{$I$}\\
 \hline
 
   Equation&
-\textbf{A}\textbf{A$^{-1}$} = \textbf{A$^{-1}$}\textbf{A} = \textbf{I}\\
+\textbf{$A$}\textbf{$I$} = \textbf{$I$}\textbf{$A$} = \textbf{$A$}\\
   \hline
   Description 
-        &\textbf{A} is a known \textit{m x n} matrix.\\
+        &\textbf{$A$} is a known \textit{n x n} matrix.\\
 
+        &\textbf{$I$} is an Identity matrix .\\
+        
+        & $I_1$ = $\begin{bmatrix}
+  1\\
+\end{bmatrix}$, $I_2$ = $\begin{bmatrix}
+  1 & 0\\
+  0 & 1\\
+\end{bmatrix}$, $I_3$ = $\begin{bmatrix}
+  1, 0, 0\\
+  0, 1, 0\\
+  0, 0, 1\\
+\end{bmatrix}$, $I_n$ = $\begin{bmatrix}
+  1 & 0 & 0 & \dots & 0\\
+  0 & 1 & 0 & \dots & 0\\
+  0 & 0 & 1 & \dots & 0\\
+  \vdots & \vdots & \vdots & \ddots &\vdots\\
+  0 & 0 & 0 & \dots & 1
+   
+\end{bmatrix}$.\\
 
-        & \textbf{A$^{-1}$} is the inverse of matrix \textbf{A} .\\
-        &\textbf{I} is an Identity matrix . \wss{You should define the identity
-          matrix somewhere.  It would be a good data definition.}\\
-  \hline
+ \hline
   Source&
-       Scientific Computing, An Introductory Survey, Second Edition by MICHEL T. HEATH, Chapter 2.
+      \url{https://www.colorado.edu/engineering/Aerospace/CAS/courses.d/IFEM.d/IFEM.AppD.d/IFEM.AppD.pdf}
   \\
   \hline
-  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\ddref{D_determinant}],  [\tref{T_uniqsoln}], [\aref{A_unique}] \\
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\ddref{D_inverse}], [\aref{A_singular}]  \\
   \hline
 \end{tabular}
 \end{minipage}\\
 
 ~\newline
+
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{D_inverse}\\
+\hline
+Label& \bf Inverse of a Matrix\\
+\hline
+Symbol & \textbf{$A^{-1}$}\\
+\hline
+
+  Equation&
+\textbf{$A$}\textbf{$A^{-1}$} = \textbf{$A^{-1}$}\textbf{$A$} = \textbf{$I$}\\
+  \hline
+  Description 
+        &\textbf{$A$} is a known \textit{m x n} matrix.\\
+
+
+        & \textbf{$A^{-1}$} is the inverse of matrix \textbf{$A$} .\\
+        &\textbf{$I$} is an Identity matrix .\\
+  \hline
+  Source&
+        \url{https://www.colorado.edu/engineering/Aerospace/CAS/courses.d/IFEM.d/IFEM.AppD.d/IFEM.AppD.pdf}
+  \\
+  \hline
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\ddref{D_determinant}],  [\tref{T_LAE}], [\aref{A_singular}] \\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
 
 \noindent
 \begin{minipage}{\textwidth}
@@ -461,7 +508,7 @@ Symbol & \textbf{${|A|}$}\\
        
 
   \hline
-  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\ddref{D_inverse}],  [\tref{T_uniqsoln}],  [\aref{A_unique}] \\
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\ddref{D_inverse}],  [\tref{T_LAE}],  [\aref{A_singular}] \\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -489,10 +536,9 @@ Symbol & \textbf{rank(A)}\\
         & rank(A) is the rank of matrix A.\\
 
 
-        & We assume that A is an m $\times$ n matrix and we define the linear map f by f(x) = Ax  .\\
+        & The rank of a matrix can be defined as the maximum number of linearly independent column vectors in the matrix or the maximum number of linearly independent row vectors in the matrix  .\\
 
-        & The rank of an m $\times$ n matrix is a nonnegative integer and cannot
-          be greater than either m or n . \wss{You haven't really defined rank.}\\
+        & The rank of an m $\times$ n matrix is a nonnegative integer and cannot be greater than either m or n .\\
         
   \hline
   Source&
@@ -500,10 +546,94 @@ Symbol & \textbf{rank(A)}\\
        
 
   \hline
-  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\tref{T_uniqsoln}],  [\aref{A_unique}]\\
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\tref{T_LAE}],  \\
   \hline
 \end{tabular}
 \end{minipage}\\
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{D_utm}\\
+\hline
+Label& \bf Upper Triangular Matrix\\
+\hline
+Symbol & \textbf{$U$}\\
+\hline
+
+  Equation&
+$\begin{bmatrix}
+  u_{1,1} & u_{1,2} & u_{1,3} & \dots & u_{1,n}\\
+         & u_{2,2} & u_{2,3} & \dots & u_{2,n}\\
+                 & & \ddots & \ddots & \vdots\\
+    &  &  & \ddots & u_{n-1,n}\\
+   0 & & &  & u_{n,n}
+   
+\end{bmatrix}$.\\
+  \hline
+  Description 
+        &\textbf{$U$} is a upper triangular matrix matrix.\\
+
+
+        & A square matrix is said to be upper triangular matrix if all the entries below the main diagonal are Zero .\\
+        &The sum and product of two upper triangular matrices is always a upper triangular matrix. \\
+  \hline
+  Source&
+        \url{http://mathworld.wolfram.com/UpperTriangularMatrix.html}
+  \\
+  \hline
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\tref{T_REF}],  [\tref{T_RREF}],  \\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{D_ltm}\\
+\hline
+Label& \bf Lower Triangular Matrix\\
+\hline
+Symbol & \textbf{$L$}\\
+\hline
+
+  Equation&
+$\begin{bmatrix}
+  l_{1,1} &  &  &  & 0\\
+  l_{2,1} & l_{2,2} &  & & \\
+  l_{3,1 }& l_{3,2} & \ddots & &  \\
+   \vdots & \vdots & \ddots & \ddots & \\
+   l_{n,1} & l_{n,2} & \dots & l_{n,n-1} & l_{n,n}
+   
+\end{bmatrix}$.\\\\
+  \hline
+  Description 
+        &\textbf{$L$} is a lower triangular matrix.\\
+
+
+        & A square matrix is said to be a lower triangular matrix if all the entries above the main diagonal are zero.\\
+       
+  \hline
+  Source&
+       \url{http://mathworld.wolfram.com/LowerTriangularMatrix.html}
+  \\
+  \hline
+  Ref.\ By & [\iref{gaussian}], [\iref{gauss}],  [\tref{T_REF}],  [\tref{T_RREF}] \\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
 
 
 
@@ -549,35 +679,47 @@ on.
   \rowcolor[gray]{0.9}
   Number& T\refstepcounter{theorynum}\thetheorynum \label{T_LAE}\\
   \hline
-  Label&\bf General Linear Algebraic Equation\\
+  Label&\bf General Linear Algebraic Equation Existence and Uniqueness\\
   \hline
-  Equation&   \textbf{Ax = b}\\
+  Equation&  $Ax = b$
+  
+   An \textit{n $\times$ n} matrix $A$ is said to be nonsingular if it satisfies any of the following equivalent conditions:
+ 
+  \begin{enumerate}
+  \item $A$ has an inverse (there is a matrix, denoted by $A^{-1}$,
+such that $AA^{-1}$ = $A^{-1}A$ = $I$, the identity matrix).
+\item Determinant of $(A)$ is not equals to 0
+\item rank($A$) = \textit{n} (the rank of a matrix is the maximum number of linearly independent  rows or columns it contains).  
+  \end{enumerate}\\
+  
+
   \hline
-  Description & 
-A linear transformation between two finite dimensional vector spaces is
+  Description & \begin{itemize}
+  \item A linear transformation between two finite dimensional vector spaces is
 represented by a matrix. In matrix-vector notation, a system of linear algebraic
-equations has the form \textbf{Ax = b} where \textbf{A} is known \textit{m $\times$ n}
-matrix, \textbf{b} is an \textit{m}-vector and \textbf{x} is an
-\textit{n}-vector. If \textbf{x} is known, then such a linear relationship
-enables us to predict effect \textbf{b} from cause \textbf{x} by matrix-vector
-multiplication \textbf{b} = \textbf{A}\textbf{x}. The linear system will also
-enable us to "reverse engineering", \wss{Use ``quote'' to get correct quotation
-                marks} if we know the vector \textbf{b} of effects,
-we can be able to determine the corresponding vector \textbf{x} of cause. \\
+equations has the form $Ax = b$ where $A$ is known \textit{n $\times$ n}
+square matrix, $b$ is an \textit{m}-vector and $x$ is an
+\textit{n}-vector.  
+
+\item The existence of a solution to a system of linear equations
+$Ax = b$ depend on whether the matrix $A$ is singular or
+nonsingular. If the matrix $A$ is nonsingular, then its inverse
+$A^{-1}$ exists, and the system $Ax = b$ always has a unique
+solution $x$ = $A^{-1}b$ regardless of the value for $b$.
+If the matrix $A$ is singular, then the number of solutions is determined
+by the right hand side vector $b$. 
+  
+\end{itemize}\\
   \hline
+  
   Source &
-           \url{http://www.sciencedirect.com/science/article/pii/0377042794903026}\\
+           \cite{heath2002scientific}\\
   % The above web link should be replaced with a proper citation to a publication
   \hline
-  Ref.\ By &  [\iref{gaussian}], [\iref{gauss}], [\aref{A_explicit}], [\aref{A_matrixform}], [\cref{C_inputs}] \\
+  Ref.\ By &  [\iref{gaussian}], [\iref{gauss}], [\ddref{D_matrix}], [\ddref{D_identity}], [\ddref{D_inverse}], [\ddref{D_determinant}], [\ddref{D_rank}], [\aref{A_square}], [\aref{A_singular}] \\
   \hline
 \end{tabular}
 \end{minipage}\\
-
-\wss{You should introduce the assumption that $A$ is a square matrix here.
-  There is no reason to continue with the more general $m \times n$ case.  (You
-  should also add an explicit assumption that $A$ is square.  This is also
-  something you should say in the scope section.)}
 
 ~\newline
 
@@ -587,41 +729,36 @@ we can be able to determine the corresponding vector \textbf{x} of cause. \\
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
-  Number& T\refstepcounter{theorynum}\thetheorynum \label{T_uniqsoln}\\
+  Number& T\refstepcounter{theorynum}\thetheorynum \label{T_REF}\\
   \hline
-  Label&\bf Existence and Uniqueness\\
+  Label&\bf Row Echelon Form\\
   \hline
-  Equation&   \textbf{Ax = b}
+  Equation&  $\begin{bmatrix}
+  1 & * & * & \dots & *\\
+  0 & 1 & * & \dots & *\\
+  \vdots & 0 & \ddots & \ddots &\vdots\\
+   \vdots & \vdots & \ddots & 1 & *\\
+   0 & 0 & \dots & 0 & 1
+   
+\end{bmatrix}$.
 
-An \textit{n $\times$ n} matrix \textbf{A} is said to be nonsingular if it satisfies any of the following equivalent conditions:
-
-
-1. \textbf{A} has an inverse (there is a matrix, denoted by \textbf{A$^{-1}$},
-such that \textbf{A}\textbf{A$^{-1}$} = \textbf{A$^{-1}$}\textbf{A} =
-\textbf{I}, the identity matrix).
-
-
- 2. Determinant of (\textbf{A}) is not equals to 0   
-
- 3. rank(\textbf{A}) = \textit{n} (the rank of a matrix is the maximum number of
-            linearly independent  rows or columns it contains).   \wss{If you
-            have a list use the itemize or enumerate environments in LaTeX.}\\
-
+Row echelon form of \textit{n $\times$ n} matrix.\\
   \hline
-Description & The existence of a solution to a system of linear equations
-\textbf{Ax = b} depend on whether the matrix \textbf{A} is singular or
-nonsingular. If the matrix \textbf{A} is nonsingular, then its inverse
-\textbf{A$^{-1}$} exists, and the system \textbf{Ax = b} always has a unique
-solution \textbf{x} = \textbf{A$^{-1}$}\textbf{b} regardless of the value for b.
-If the matrix \textbf{A} is singular, then the number of solutions is determined
-by the right hand side vector \textbf{b}. \\
+Description & 
+The \textit{n $\times$ n} matrix is said to be in row echelon form if it follows the following condition:
+\begin{itemize}
+\item The first non-zero element in each row is called the leading element and it should be 1.
+\item Each leading entry which is in a column must be to the right of the leading entry in the previous row.
+\item If there are any rows with all zero elements, they must be below the rows with non-zero elements. 
+\end{itemize}
+\\
   \hline
   Source &
-           \url{http://www.sciencedirect.com/science/article/pii/0377042794903026}\\
+           \url{http://stattrek.com/matrix-algebra/echelon-form.aspx}\\
   % The above web link should be replaced with a proper citation to a publication
   \hline
-Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\ddref{D_inverse}],
-[\ddref{D_determinant}], [\ddref{D_rank}], [\aref{A_unique}], [\cref{C_inputs}]
+Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\ddref{D_utm}],
+[\ddref{D_ltm}]
 \\
   \hline
 \end{tabular}
@@ -629,10 +766,50 @@ Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\ddref{D_inverse}],
 
 ~\newline
 
-\wss{This shouldn't be a separate theoretical model.  It is part of the first
-  model.  The potential solutions for a linear system of equations are a unique
-  solution, an infinite number of solutions or no solution.  You should then
-  reference definitions that define what rank, singular etc. mean.}
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
+  Number& T\refstepcounter{theorynum}\thetheorynum \label{T_RREF}\\
+  \hline
+  Label&\bf Reduced Row Echelon Form\\
+  \hline
+  Equation&  $\begin{bmatrix}
+  1 & 0 & 0 & \dots & 0\\
+  0 & 1 & 0 & \dots & 0\\
+  \vdots & 0 & \ddots & \ddots &\vdots\\
+   \vdots & \vdots & \ddots & 1 & 0\\
+   0 & 0 & \dots & 0 & 1
+   
+\end{bmatrix}$.
+
+Reduced row echelon form of \textit{n $\times$ n} matrix.\\
+  \hline
+Description & 
+The \textit{n $\times$ n} matrix is said to be in reduce row echelon form if it follows the following condition:
+\begin{itemize}
+\item It should follow all the conditions of row echelon form.
+\item The leading entry in each row must be the only non-zero entry in its column. 
+\end{itemize}
+\\
+  \hline
+  Source &
+           \url{http://stattrek.com/matrix-algebra/echelon-form.aspx}\\
+  % The above web link should be replaced with a proper citation to a publication
+  \hline
+Ref.\ By & [\iref{gaussian}], [\iref{gauss}], [\ddref{D_utm}],
+[\ddref{D_ltm}]
+\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
+
 
 \section{Variabilities}
 
@@ -663,112 +840,33 @@ one which is expressed in mathematical terms.
   \hline
   Label& \bf Gaussian Elimination Method for solving Linear Algebraic Equations\\
   \hline
-  Input& \textbf{A}, \textbf{b}   \\
+  Input& $A, b$  \\
   
   \hline
-  Output& \textbf{M$_1$}, \textbf{L}, \textbf{U}, \textbf{x} \wss{The output
-          should only be $x$ and an element from enumerated type that indicates
-          whether the matrix is singular or not.}   \\
+  Output& $x$     \\
   \hline
-  Description&A is a known \textit{m $\times$ n} matrix.\\
-  &x is an \textit{n}-vector.\\
-  &b is an \textit{m}-vector.\\
-  &M$_{1}$ is an elementary elimination matrix.\\
-  &L is lower triangular matrix.\\
-  & U is upper triangular matrix.
-  \\
+  Description& \begin{itemize}
+  \item $A$ is a known \textit{n $\times$ n} matrix.
+  \item $x$is an \textit{n}-vector.
+  \item $b$ is an \textit{m}-vector.
+  \item In Gaussian elimination method the equations are solved by reducing the given matrix into row echelon form. 
+  \end{itemize}
+ \\
   \hline
-  Sources& \url{http://www.sciencedirect.com/science/article/pii/0377042794903026}\\
+  Sources& {\cite{heath2002scientific}}\\
   \hline
-  Ref.\ By & [\aref{A_programcall}], [\aref{A_explicit}], [\aref{A_matrixform}], [\aref{A_unique}], [\aref{A_complex}], [\aref{A_entryofA}], [\aref{A_entryofb}]\\
+  Ref.\ By & [\aref{A_programcall}], [\aref{A_square}], [\aref{A_singular}], [\tref{T_LAE}], [\tref{T_REF}] \\
   \hline
 \end{tabular}
 \end{minipage}\\
 
-\wss{You are really inconsistent with the notation.  At some points you use bold
-  face for matrices and vectors, other times you do not.  You also are not
-  consistent in putting your variables and equations in the LaTeX equation
-  environment.}
 
 \subsubsection*{Derivation of Gaussian Elimination Method}{
 
-It is fairly simple matter to reduce a general linear system \textbf{Ax = b} to
-upper triangular form. We first choose an elementary elimination matrix
-\textbf{M$_1$} with the first diagonal entry \textbf{a$_{11}$} as pivot, so that
-the first column of \textbf{A} becomes zero below the first row when
-premultiplied by \textbf{M$_1$}. All the remaining columns of \textbf{A}, as
-well as right-hand-side vector \textbf{b}, must also be multiplied by
-\textbf{M$_1$}, so the new system becomes \textbf{M$_1$}\textbf{Ax} =
-\textbf{M$_1$}\textbf{b}.
+The derivation for Gaussian elimination can be referred at \cite{heath2002scientific} 
 
-Next we use the second diagonal entry as pivot to determine a second elementary
-elimination matrix \textbf{M$_2$} that annihilates all of the entries of the
-second column of the new matrix, \textbf{M$_1$}\textbf{A}, below the second row.
-Again, \textbf{M$_2$} must be applied to the entire matrix and right-hand-side
-vector, so that we obtain the further modified linear system
-\textbf{M$_2$}\textbf{M$_1$}\textbf{Ax} =
-\textbf{M$_2$}\textbf{M$_1$}\textbf{b}. Note that the first column of the matrix
-\textbf{M$_1$}\textbf{A} is not effected by \textbf{M$_2$} because all of its
-entries are zero in the relevant rows. If we define the matrix \textbf{M} =
-\textbf{M$_{n-1}$}...\textbf{M$_{1}$}, then the transformed the linear system is
 
-\vspace{.5cm}
-
-\textbf{M}\textbf{A}\textbf{x} = \textbf{M$_{n-1}$}...
-\textbf{M$_{1}$}\textbf{A}\textbf{x} = \textbf{M$_{n-1}$}...
-\textbf{M$_{1}$}\textbf{b} = \textbf{M}\textbf{b}
-
-\vspace{.5cm}
-
-is upper triangular and can be solved by back-substitution to obtain the
-solution to the original linear system \textbf{Ax = b}.
-
-The process we have just described is known as Gaussian elimination. It is also
-known as LU factorization or LU decomposition because it decomposes the matrix
-\textbf{A} into product of a unit lower triangular matrix, \textbf{L}, and the
-upper triangular matrix, \textbf{U}. To see this, recall that the product
-\textbf{L$_k$}\textbf{L$_j$} is unit lower triangular if k<j, so taht \wss{spell check!}
-
-\vspace{.5cm}
-
-\textbf{L} = \textbf{M$^{-1}$} =
-\textbf{(\textbf{M$_{n-1}$}...\textbf{M$_{1}$})$^{-1}$} =
-\textbf{{M$_{1}$}$^{-1}$}...\textbf{{M$_{n-1}$}$^{-1}$} =
-\textbf{L$_{1}$}...\textbf{L$_{n-1}$}
-
-\vspace{.5cm}
-
-is unit lower triangular. We have already seen that, by design, the matrix
-\textbf{U} = \textbf{MA} is upper triangular. Therefore, we have expressed
-\textbf{A} as a product
-
-\vspace{.5cm}
-
-\textbf{A} = \textbf{LU}
-
-\vspace{.5cm}
-
-where \textbf{L} is unit lower triangular and \textbf{U} is upper triangular.
-Given such a factorization, the linear system \textbf{Ax = b} can be written as
-\textbf{LUx} = \textbf{b} and hence can be solved by first solving the lower
-triangular system \textbf{Ly} = \textbf{b} by forward-substitution, then the
-upper triangular matrix \textbf{Ux} = \textbf{y} by back-substitution.
-
-In solving a linear system \textbf{Ax = b}, the necessary transformation of the
-right-hand-side vector \textbf{b} could be included as a part of LU
-factorization process, or it could be done as a separate step to solve the lower
-triangular system \textbf{Ly} = \textbf{b} after \textbf{L} has been obtained.
-In either case, back-substitution for upper triangular matrix is then used to
-solve the upper triangular system \textbf{Ux} = \textbf{y} to obtain the
-solution \textbf{x}.
-
-\wss{The above text is plagiarized.  You cannot take someone else's words and
-  present them as your own without citation.  The above is almost a direct quote
-  from Heath, but you don't cite that resource here.  Please be very careful to
-  not do this.  For the current project, it would have been fine to not produce
-  all of these details.  You could give a high level overview of the algorithm
-  and simply refer the reader to the Heath textbook for the details.}
-
+}
 ~\newline
 
 %Instance Model 2
@@ -783,20 +881,24 @@ solution \textbf{x}.
   \hline
   Label& \bf Gauss-Jordan Elimination Method for solving Linear Algebraic Equations\\
   \hline
-  Input&  \textbf{A}, \textbf{b}   \\
+  Input&  $A, b$   \\
   
   \hline
-  Output& \textbf{x}    \\
+  Output& $x$    \\
   \hline
-Description& The algorithm of Gauss-Jordan transforms matrix A by means of
+Description& \begin{itemize}
+\item In Gauss-Jordan elimination method the equations are solved by reducing the given matrix into reduced row echelon form.
+\item The algorithm of Gauss-Jordan transforms matrix A by means of
 elementary transformations into a diagonal matrix (or into the identity matrix),
 and performs similar transformations to the right-hand side vector b in order to
 find the solution vector x.
+\end{itemize}
+
   \\
   \hline
-  Sources& \url{http://www.sciencedirect.com/science/article/pii/0377042794903026}\\
+  Sources& \cite{dekker1994parallel}\\
   \hline
-  Ref.\ By & [\aref{A_programcall}], [\aref{A_explicit}], [\aref{A_matrixform}], [\aref{A_unique}], [\aref{A_complex}], [\aref{A_entryofA}], [\aref{A_entryofb}]\\
+  Ref.\ By & [\aref{A_programcall}], [\aref{A_square}], [\aref{A_singular}], [\tref{T_LAE}],[\tref{T_RREF}]\\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -804,76 +906,7 @@ find the solution vector x.
 
 \subsubsection*{Derivation of  Gauss-Jordan Elimination Method}
 
-The transformation of A is achieved in n successive elimination steps. Starting
-from \textbf{{A$^{(1)}$} = A}, the \textbf{{k$^{th}$}} elimination step, k = 1,. . . , n,
-transforms \textbf{{A$^{(k)}$}} into \textbf{{A$^{(k+1)}$}} such that the off-diagonal elements in
-the \textbf{{k$^{th}$}} column, not only below but also above the main diagonal, become
-zero. Thus, after n steps the diagonal matrix \textbf{D = {A$^{(n+1)}$}} is obtained. The
-\textbf{{k$^{th}$}} elimination step can be formulated as follows. The pivot of
-the \textbf{{k$^{th}$}} elimination step is \textbf{$\delta_k$} = \textbf{{A$^{(k)}_{k,k}$}}, as in
-Gaussian elimination. Let \textbf{{g$_k$}}, be the column vector given by
-
-\vspace{.5cm}
-
-\textbf{{g$_k$} = {A$^{(k)}$}{e$_k$} - $\delta_k${e$_k$}}
-
-\vspace{.5cm}
-
-therefore the vector obtained from the \textbf{{k$^{th}$}} column of \textbf{{A$^{(k)}$}} by
-replacing its diagonal element by zero. Then the \textbf{{k$^{th}$}} elimination step, to
-introduce the required zeros in the \textbf{{k$^{th}$}} column of the matrix, consists of
-premultiplying \textbf{{A$^{(k)}$}} by the matrix
-
-\vspace{.5cm}
-
-\textbf{{T$_k$} = I - $\delta_k^{-1}$ {g$_k$}{e$_k^T$}}
-
-\vspace{.5cm}
-
-In other words, \textbf{{A$^{(k+1)}$}} is obtained from \textbf{{A$^{(k)}$}} by means of the
-rank-one modification
-
-\vspace{.5cm}
-
-\textbf{A$^{(k+1)}$ = {T$_k$}{A$^{(k)}$} = {A$^{(k)}$}} -
-\textbf{{$\delta_k^{-1}$}{g$_k$}{e$_k^T$}}
-
-\vspace{.5cm}
-
-The corresponding transformation of right-hand side vector b proceeds as
-follows. Starting from \textbf{{b$^{(1)}$} = b}, the \textbf{{k$^{th}$}} elimination step, k = 1,.
-. . , n, transforms \textbf{{b$^{(k)}$}} into \textbf{b$^{(k+1)}$} according to
-
-\vspace{.5cm}
-
-\textbf{{b$^{(k+1)}$} = {T$_k$}{b$^{(k)}$} = {b$^{(k)}$} -
-$\delta_k^{-1}${b$^{(k)}_k$}{g$_k$}},
-
-\vspace{.5cm}
-
-which is a vector update operation. 
-
-Thus, the given linear system is transformed into the equivalent system \textbf{Dx = y},
-which is easily solved by calculating
-
-\vspace{.5cm}
-
-\textbf{x = {D$^{-1}$}y}.
-
-~\newline
-
-\wss{More plagiarism.  This is not okay!  You might not previously have known
-  how serious this is, but going forward, please remember that you cannot do
-  this.  The text you provided comes directly from ``Parallel algorithms for
-  solving large linear systems'' by Dekker et al.  You do not even cite the
-  article.  You might have a feeling that you need all of this detail in the
-  SRS, but you do not.  If you aren't focusing on a variability in the
-  algorithm, you should be able to just give a high level overview and then
-  point to the appropriate external reference.  I'm going to assume that the
-  current mistake was a misunderstanding, but if this happens in the future, I
-  will have to consider it a case of Academic Dishonesty.  If you have any
-  doubts going forward, please ask me.}
-
+The derivation for Gauss-Jordan elimination can be referred at \cite{dekker1994parallel}
 
 \subsection{Assumptions}
 
@@ -886,61 +919,29 @@ likely change [LC], in which the respective assumption is used.
 \begin{itemize}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_programcall}:]
-It is assumed that user will not declare the method by which the linear algebraic equation is solved.
+It is assumed that user will declare the method by which the linear algebraic equation is solved.
 ~\newline
- [\iref{gaussian}], [\iref{gauss}].
+ [\iref{gaussian}], [\iref{gauss}], [\gsref{G_solveforx}].
 
-\wss{Remember that the user is a driver program.  The driver should be able to
-  select the algorithm that is desired.  I don't think there is any reason to
-  not make the algorithm choice up to the caller.}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_explicit}:]
-The entry of values for A, b will be of the explicit form such that Ax = b as described.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_square}:]
+It is assumed that the entered input matrix $A$ is a square matrix.
 ~\newline
- [\tref{T_LAE}]. [\iref{gaussian}], [\iref{gauss}]
+ [\tref{T_LAE}], [\iref{gaussian}], [\iref{gauss}]
 
-\wss{This isn't really an assumption.  You are just restating the requirements.
-Your software should be able to detect if the inputs are not in the correct format.}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_matrixform}:]
-it is assumed that the values for A, b are entered in matrix form.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_sequence}:]
+It is assumed that the user gives the input as a sequence of numbers.
 ~\newline
- [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}], [\ddref{D_inverse}], [\ddref{D_determinant}], [\ddref{D_rank}], [\gsref{G_solveforx}]
+ [\iref{gaussian}], [\iref{gauss}], [\gsref{G_solveforx}]]
 
-\wss{The software can check this; you don't need to assume it.}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_unique}:]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_singular}:]
 It is assumed that the entered matrix A is non-singular. 
 ~\newline
-[\iref{gaussian}], [\iref{gauss}], [\aref{T_uniqsoln}], [\ddref{D_inverse}], [\gsref{G_solveforx}]
+[\iref{gaussian}], [\iref{gauss}], [\aref{T_LAE}], [\ddref{D_inverse}], [\gsref{G_solveforx}]
 
-\wss{You shouldn't really have to assume this.  If the matrix is singular, the
-  solver will fail and you can tell the user that the matrix is
-  ill-conditioned.  (You likely won't know whether it is singular, or just close
-  to singular, but for our purposes this is fine.)}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_complex}:]
-It is assumed that the entry of values for A, b will not have any complex numbers.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_separate}:]
+It is assumed that the user gives the input values for the matrices $A, b$ separately.
 ~\newline
- [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}], [\ddref{D_inverse}], [\ddref{D_determinant}], [\ddref{D_rank}], [\gsref{G_solveforx}]
-
-\wss{This is not the place to say the type of $A$.  The type is not an
-  assumption, but part of the requirements.  Really it is a scope decision.}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_entryofA}:]
-It is assumed that the entry of values for A is from the set of $\mathbb{R}$.
-~\newline
- [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}]
-
-\wss{Same assumption as the previous, but said a different way.  Same comment as
-  above applies.}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_entryofb}:]
-It is assumed that the entry of values for A is from the set of $\mathbb{R}$.
-~\newline
- [\iref{gaussian}], [\iref{gauss}], [\tref{T_uniqsoln}], [\tref{T_LAE}]
-
-\wss{The final assumptions are the same assumption twice.}
+ [\iref{gaussian}], [\iref{gauss}], [\gsref{G_solveforx}]
 
 
 \end{itemize}
@@ -948,32 +949,20 @@ It is assumed that the entry of values for A is from the set of $\mathbb{R}$.
 \subsection{Calculation} \label{sec_Calculation}    
 
 \begin{itemize}
-\item[C\refstepcounter{calcnum}\thecalcnum \label{C_inputs}:]
-Check the inputs if they satisfy the input assumptions.
-~\newline
-[\gsref{G_solveforx}], [\aref{A_explicit}], [\aref{A_matrixform}],
-[\aref{A_complex}], [\aref{A_entryofA}], [\aref{A_entryofb}],
-[\tref{T_uniqsoln}], [\tref{T_LAE}], [\iref{gaussian}], [\iref{gauss}]
 
 \item[C\refstepcounter{calcnum}\thecalcnum \label{C_progname}:]
 Perform the linear algebraic solver model when the user calls the program.
 ~\newline
-[\gsref{G_solveforx}], [\aref{A_explicit}], [\aref{A_matrixform}],
-[\aref{A_complex}], [\aref{A_entryofA}], [\aref{A_entryofb}],
-[\tref{T_uniqsoln}], [\tref{T_LAE}], [\iref{gaussian}], [\iref{gauss}]
+[\gsref{G_solveforx}], [\aref{A_programcall}], [\aref{A_square}],
+[\aref{A_sequence}], [\aref{A_singular}], [\aref{A_separate}], [\iref{gaussian}], [\iref{gauss}]
 
 \end{itemize}
-
-\wss{The first variability is related to input, not calculation.}  \wss{Your
-  calculation variabilities are the choice between IM1 and IM2.}
 
 \subsection{Output} \label{sec_Output}
 
 Not Applicable
 
-\wss{Why not?  Couldn't you have an output option of writing the values to a
-  file, instead of to memory?  Your output might include the residual, or it
-  might not.}
+
 
 \section{Traceability Matrices and Graphs}
 
@@ -993,17 +982,21 @@ assumptions..
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	&\ddref{D_matrix}&\ddref{D_inverse} & \ddref{D_determinant}&\ddref{D_rank}& \tref{T_LAE}& \tref{T_uniqsoln}& \iref{gaussian}& \iref{gauss} \\
+	&\ddref{D_matrix} & \ddref{D_identity} & \ddref{D_inverse} & \ddref{D_determinant} & \ddref{D_rank} & \ddref{D_utm} & \ddref{D_ltm} & \tref{T_LAE} & \tref{T_REF} & \tref{T_RREF} & \iref{gaussian} & \iref{gauss} \\
 \hline
 
-\ddref{D_matrix}   & & & & &X &X &X &X \\ \hline
-\ddref{D_inverse}  & & &X & & &X &X & X\\ \hline
-\ddref{D_determinant}   & &X & & & &X &X&X \\ \hline
-\ddref{D_rank}   & & & & & &X &X &X \\ \hline
-\tref{T_LAE}  & & & & & & &X &X \\ \hline
-\tref{T_uniqsoln}  & & & & & & &X & X\\ \hline
-\iref{gaussian}     & & & & & & & &  \\ \hline
-\iref{gauss}    & & & & & & & & \\ \hline
+\ddref{D_matrix}   & & & & & & & &X & & &X &X \\ \hline
+\ddref{D_identity} & & &X & & & & & & & &X &X \\ \hline
+\ddref{D_inverse}  & & & &X & & & &X & & &X &X\\ \hline
+\ddref{D_determinant}   & & &X & & & & &X & & &X &X  \\ \hline
+\ddref{D_rank}   & & & & & & & &X & & &X &X \\ \hline
+\ddref{D_utm}    & & & & & & & & &X &X &X &X \\ \hline
+\ddref{D_ltm}    & & & & & & & & &X &X &X &X \\ \hline
+\tref{T_LAE}  &X &X &X &X &X & & & & & &X &X \\ \hline
+\tref{T_REF}  & & & & & &X &X & & & &X &X \\ \hline
+\tref{T_RREF}   & & & & & &X &X & & & &X &X  \\ \hline
+\iref{gaussian}     & & & & & & & & &X & & &   \\ \hline
+\iref{gauss}    & & & & & & & & & &X &X &  \\ \hline
 
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
@@ -1018,19 +1011,23 @@ assumptions..
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline        
-	& \aref{A_programcall}& \aref{A_explicit}& \aref{A_matrixform}& \aref{A_unique}&
-  \aref{A_complex}& \aref{A_entryofA}& \aref{A_entryofb}& \cref{C_inputs}& \cref{C_progname}\\
+	& \aref{A_programcall}& \aref{A_square}& \aref{A_sequence}& \aref{A_singular}&
+  \aref{A_separate}&   \cref{C_progname}\\
  
 \hline
-\gsref{G_solveforx}         & & &X &X &X & & &X &X \\ \hline
-\ddref{D_matrix}             & & & &X & & & & &\\ \hline
-\ddref{D_inverse}           & & &X & &X & & & &\\ \hline
-\ddref{D_determinant}   & & &X & &X & & & &\\ \hline
-\ddref{D_rank}               & & &X & &X & & & &\\ \hline
-\tref{T_LAE}                   & &X &X & &X &X &X &X &X\\ \hline
-\tref{T_uniqsoln}            & & &X & &X &X &X &X &X\\ \hline
-\iref{gaussian}                &X &X &X &X &X &X &X &X &X \\ \hline
-\iref{gauss}                    &X &X &X &X &X &X &X &X &X\\ \hline
+\gsref{G_solveforx}          &X &X &X &X &X &X \\ \hline
+\ddref{D_matrix}              & &X & & & &\\ \hline
+\ddref{D_identity}             & & & &X & &\\ \hline
+\ddref{D_inverse}            & & & &X & &\\ \hline
+\ddref{D_determinant}    & & & &X & &\\ \hline
+\ddref{D_rank}                & &X & & & &\\ \hline
+\ddref{D_utm}              & & & & & &\\ \hline
+\ddref{D_ltm}              & & & & & &\\ \hline
+\tref{T_LAE}                    & &X & &X & &\\ \hline
+\tref{T_REF}             & & & & & &\\ \hline
+\tref{T_RREF}             & & & & & &\\ \hline
+\iref{gaussian}                 &X &X & &X & & \\ \hline
+\iref{gauss}                    &X &X & &X & &\\ \hline
 
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
@@ -1066,14 +1063,5 @@ assumptions..
 \bibliographystyle{plainnat}
 \bibliography{ref}
 
-\wss{You should have more references than just this.}
-
-\wss{Your document would be improved with explicit type information.  To start
-  with, simply add this information to the table of symbols.  After this, you
-  should look for other places where the type information would be helpful.}
-
-\wss{You would have been better off with a simpler document.  A generalized
-  version of what you presented in class is better than trying to ``fake'' your
-  way through derivation of different algorithms.}
 
 \end{document}
