@@ -33,7 +33,7 @@
 \newcommand{\tthetestnum}{\thetnum}
 \newcommand{\tref}[1]{T\ref{#1}}
 
-\input{../Comments}
+%\input{../Comments}
 
 \begin{document}
 
@@ -102,9 +102,9 @@ $\epsilon$ & Difference\\
 
 The following section gives an overview of the Verification and Validation ( V
 \& V ) plan for the Library of Linear Algebraic Equation Solver. This section
-also explains the purpose, scope and overview of the document.
+also explains the purpose, scope and overview of the document. The full documentation can be found at the mentioned link below:
 
-\wss{An explicit web-link to your GitHub repo would be nice.}
+\url{https://github.com/deviprasad135/CAS741}
 
 \subsection{Purpose}
 
@@ -122,11 +122,10 @@ Equation Solver.
 
 The scope of testing is limited to Library of Linear Algebraic Equation Solver.
 The library includes two linear algebraic solving functions. The scope is
-limited to these two solving functions.
+limited to these two solving functions. The programming language used is R. 
 
-\wss{Reference your SRS document}
+See SRS Documentation at:  \url{https://github.com/deviprasad135/CAS741/blob/master/Doc/SRS/CA.pdf}
 
-\wss{Explicitly state programming language}
 
 \subsection{Overview of Document}
 
@@ -141,9 +140,8 @@ system testing and unit testing are provided.
 
 Software which is tested is Library of Linear Algebraic Equation Solver. The
 library contains two linear algebraic equation solving algorithms. Given the
-initial values of algebraic equation A and B, the program calculates the final
-value x by using numerical methods.  \wss{When you use mathematical symbols, put
-  them in math mode ($x$).}
+initial values of algebraic equation $A$ and $B$, the program calculates the final
+value $x$ by using numerical methods.
 
 \subsection{Test Team}
 
@@ -158,30 +156,25 @@ compiler. The aim of testing is 100\%  code coverage .
 
 \subsection{Verification Tools}
 
-The verification tools which will be used are as follows:
+The verification tools which will be used are as follows :
 
 \begin{enumerate}
 
 \item The programming language used is R. Comparison is done between the
-  RStusio's \wss{proof read} own functional programs with the Library of Linear
-  Algebraic Equation Solver by the Unit Testing Framework designed in
-  RStudio. The following algorithm \wss{This is an equation, not an algorithm} is used for comparison.
+RStusio's optR library functional programs with the Library of Linear Algebraic Equation
+Solver by the Unit Testing Framework designed in RStudio. The following
+equation is used for comparison.
+
+\begin{center}
+ $\epsilon_\text{rel} = \text{norm} = \frac{||x_\text{R} - x_\text{LAES}||}{||x_\text{R}||}$
+\end{center}
 
 
-\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear
-Algebraic Equation Solver}}{Result_{RStudio}}\]
 
-\wss{The symbols in this equation are far too long.  You also should use a
-  non-italic font for the subscripts.  For instance, you could use
-  $\epsilon_\text{rel}$, $x_\text{R}$, $x_\text{LAES}$, where $x$ is the
-  solution of the linear system of equations. You also need to do the equation
-  component wise and then find the norm, so that you get one scalar value to
-  represent the error.  $\epsilon_\text{rel} = \frac{|x_\text{R} - x_\text{LAES}|}{|x|}$}
 
 \item The framework for automated system testing is provided by using RStudio's Test Class .
 
-\item For program debugging and for checking syntax errors the program's IDE (
-RStudio ) will be used as a Static Analyzer tool . \wss{proof read}
+\item For program debugging and for checking syntax errors the Rstudio's IDE will be used as a Static Analyzer tool .
 
 \item covr which is an RStudio's library is used for code coverage.
 
@@ -192,9 +185,7 @@ RStudio ) will be used as a Static Analyzer tool . \wss{proof read}
 
 \subsection{Non-Testing Based Verification}
 		
-Not Applicable  \wss{Your project is quite simple.  To get a higher grade, you
-  will need to do something beyond just testing.  Others in the class are
-  looking at code inspection and code walkthroughs.}
+Not Applicable
 
 \section{System Test Description}
 
@@ -219,15 +210,15 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A = $\begin{bmatrix} 
+Input: $A$ = $\begin{bmatrix} 
 2 & 3 \\
 4 & 9 
-\end{bmatrix}$, b = $\begin{bmatrix} 
+\end{bmatrix}$, $b$ = $\begin{bmatrix} 
 6 \\
 15 
 \end{bmatrix}$
 
-Output: = x = $\begin{bmatrix} 
+Output:4 $x$ = $\begin{bmatrix} 
 3/2\\
 1
 \end{bmatrix}$, Success = true
@@ -242,17 +233,17 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A =  $\begin{bmatrix} 
+Input: $A$ =  $\begin{bmatrix} 
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, b = $\begin{bmatrix} 
+\end{bmatrix}$, $b$ = $\begin{bmatrix} 
 5\\
 7\\
 8 
 \end{bmatrix}$
 					
-Output: x = $\begin{bmatrix} 
+Output: $x$ = $\begin{bmatrix} 
 -15\\
 8\\
 2 
@@ -267,22 +258,29 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A =  $\begin{bmatrix} 
-1 & 3 & -2 \\
-3 & 5 & 6\\
-2 & 4 & 3
-\end{bmatrix}$, b = $\begin{bmatrix} 
-5\\
-7\\
-8 
-\end{bmatrix}$
-
-\wss{The input is 3 equations, not 6}
-				
-Output: x = $\begin{bmatrix} 
+Input: $A$ = $\begin{bmatrix} 
+1 & 1 & -2 & 1 & 3 & -1 \\
+2 & -1 & 1 & 2 & 2 & -3 \\
+1 & 3 & -3 & -1 & 2 &1 \\
+5 & 2 &-1 & -1 & 2 & 1 \\
+-3 & -1 & 2 & 3 & 1 &3 \\
+4 & 3 & 1 & -6 & -3 & -2
+\end{bmatrix}$, $b$  = $\begin{bmatrix} 
+ 4\\
+20\\
 -15\\
-8\\
-2 
+-3\\
+16\\
+-27 
+\end{bmatrix}$
+					
+Output: $x$ = $\begin{bmatrix} 
+1/3\\
+-430/99\\
+313/99\\
+104/99\\
+142/33\\
+-37/99 
 \end{bmatrix}$, Success = true
 					
 How test will be performed: Automated system test
@@ -294,17 +292,17 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A =$\begin{bmatrix} 
+Input: $A$ =$\begin{bmatrix} 
 0 & 2 & -1 \\
 3 & -2 & 1\\
 3 & 2 & -1
-\end{bmatrix}$, b = $\begin{bmatrix} 
+\end{bmatrix}$, $b$ = $\begin{bmatrix} 
 5\\
 7\\
 8 
 \end{bmatrix}$
 					
-Output: x = no solution, Success = true
+Output: $x$ = no solution, Success = true
 					
 How test will be performed: Automated system test
 
@@ -313,12 +311,6 @@ How test will be performed: Automated system test
 
 
 \paragraph{Gauss-Jordan Method }
-
-\wss{You shouldn't copy and paste the tests between the two methods.  This is a
-  maintenance headache.  If you correct a mistake in one place, you have to also
-  correct it in another.  It is fine to use the same test for both, but only
-  right it down once.  You can then just reference the previous test the second
-  time it comes up.}
 
 \begin{enumerate}
 
@@ -330,15 +322,15 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A = $\begin{bmatrix} 
+Input: $A$ = $\begin{bmatrix} 
 2 & 3 \\
 4 & 9 
-\end{bmatrix}$, b = $\begin{bmatrix} 
+\end{bmatrix}$, $b$ = $\begin{bmatrix} 
 6 \\
 15 
 \end{bmatrix}$
 
-Output: = x = $\begin{bmatrix} 
+Output: $x$ = $\begin{bmatrix} 
 3/2\\
 1
 \end{bmatrix}$, Success = true
@@ -353,17 +345,17 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A =  $\begin{bmatrix} 
+Input: $A$ =  $\begin{bmatrix} 
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, b = $\begin{bmatrix} 
+\end{bmatrix}$, $b$ = $\begin{bmatrix} 
 5\\
 7\\
 8 
 \end{bmatrix}$
 					
-Output: x = $\begin{bmatrix} 
+Output: $x$ = $\begin{bmatrix} 
 -15\\
 8\\
 2 
@@ -378,14 +370,14 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A = $\begin{bmatrix} 
+Input: $A$ = $\begin{bmatrix} 
 1 & 1 & -2 & 1 & 3 & -1 \\
 2 & -1 & 1 & 2 & 2 & -3 \\
 1 & 3 & -3 & -1 & 2 &1 \\
 5 & 2 &-1 & -1 & 2 & 1 \\
 -3 & -1 & 2 & 3 & 1 &3 \\
 4 & 3 & 1 & -6 & -3 & -2
-\end{bmatrix}$, b  = $\begin{bmatrix} 
+\end{bmatrix}$, $b$  = $\begin{bmatrix} 
  4\\
 20\\
 -15\\
@@ -394,13 +386,13 @@ Input: A = $\begin{bmatrix}
 -27 
 \end{bmatrix}$
 					
-Output: x = $\begin{bmatrix} 
-1\\
--2\\
-3\\
-4\\
-2\\
--1 
+Output: $x$ = $\begin{bmatrix} 
+1/3\\
+-430/99\\
+313/99\\
+104/99\\
+142/33\\
+-37/99 
 \end{bmatrix}$, Success = true
 					
 How test will be performed: Automated system test
@@ -411,109 +403,63 @@ Type: Functional, Automated, System.
 					
 Initial State: Not applicable
 					
-Input: A =$\begin{bmatrix} 
+Input: $A$ =$\begin{bmatrix} 
 0 & 2 & -1 \\
 3 & -2 & 1\\
 3 & 2 & -1
-\end{bmatrix}$, b = $\begin{bmatrix} 
+\end{bmatrix}$, $b$ = $\begin{bmatrix} 
 5\\
 7\\
 8 
 \end{bmatrix}$
 					
-Output: x = no solution, Success = true
+Output: $x$ = no solution, Success = true
 					
 How test will be performed: Automated system test
 
 \end{enumerate}
 
-\wss{You should be testing much larger systems than these for your functional
-  requirements.  You can generate matrices using the method of manufactured
-  solutions that we discussed in class.  You can also look up standard benchmark
-  problems, like those given in the matrix market (you can find it with a google search).}
 
 \subsection{Tests for Nonfunctional Requirements}
 
 \subsubsection{Performance Requirements}
 		
-\paragraph{Test for calculating speed}
-
-\begin{enumerate}
-
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculation speed
-of Library of Linear Algebraic Equation Solver.}}
-
-
-Type: Non-Functional, Manual, Performance
-					
-Initial State: Not Applicable
-					
-Input/Condition: A = $\begin{bmatrix} 
-1 & 3 & -2 \\
-3 & 5 & 6\\
-2 & 4 & 3
-\end{bmatrix}$, b = $\begin{bmatrix} 
-5\\
-7\\
-8 
-\end{bmatrix}$
-					
-Output/Result: Time
-					
-How test will be performed: Comparing the time of Library of Linear Algebraic
-Equation Solver for different type and different size of input by increasing
-number of equations.
-					
-\wss{This problem is far too small to show any reasonable timing data.  You need
-to be more specific about how you are going to vary the size of the benchmark
-problems.  What are the axes of the graph you are going to plot?}
-
-\end{enumerate}
-
-\subsubsection{Result Analysis}
 
 \paragraph{Accuracy}
 
 \begin{enumerate}
 
-\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-speed}: Calculating the
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-accuracy}: Calculating the
 accuracy of Library of Linear Algebraic Equation Solver.}}
 
 
-Type: Non-Functional, Manual, Accuracy
+Type: Non-Functional, Automatic, Accuracy
 					
 Initial State: Not Applicable
 					
-Input/Condition: A = $\begin{bmatrix} 
+Input/Condition: $A$ = $\begin{bmatrix} 
 1 & 3 & -2 \\
 3 & 5 & 6\\
 2 & 4 & 3
-\end{bmatrix}$, b = $\begin{bmatrix} 
+\end{bmatrix}$, $b$ = $\begin{bmatrix} 
 5\\
 7\\
 8 
 \end{bmatrix}$
 					
 Output/Result: $\epsilon_{Relative}$ will be calculated by comparing the result
-obtained by Library of Linear Algebraic Equation Solver and the RStudio's own
-functional programs by the following algorithm
+obtained by Library of Linear Algebraic Equation Solver and the RStudio's optR library
+functional programs by the following equation as norm
 
-\[\epsilon_{relative} = \frac{Result_{RStudio} - Result_{Library of Linear
-Algebraic Equation Solver}}{Result_{RStudio}}\]
-		
-\wss{What is the type of the terms in your equation?  Are they reals, or
-  sequences of reals?  As mentioned previously, the right hand side should be vectors
-  (sequences of reals) and the left hand side should be a scalar value.  You'll
-  need to use norms to turn the vectors into single numbers.}
-
-How test will be performed: Manually Comparing the result of Library of Linear
-Algebraic Equation Solver.
-
-\wss{You can automate this.   You just write a program to do the calculations.}
+\begin{center}
+ $\epsilon_\text{rel} = \text{norm} = \frac{||x_\text{R} - x_\text{LAES}||}{||x_\text{R}||}$
+\end{center}
+					
+How test will be performed: Automatic System Test.
 					
 \end{enumerate}
 
-\wss{What are the axes of the graph you are going to plot}
+
 
 \subsection{Traceability Between Test Cases and Requirements}
 
@@ -545,6 +491,11 @@ requirements.
 \section{Unit Testing plan}
 
 
+\begin{enumerate}
+
+\item{\textbf{T-\refstepcounter{tnum}\thetnum \label{t-accuracy}: Unit Testing.}}
+
+
 
 The testing plan for Library of Linear Algebraic Equation Solver is divided into
 several unique steps. These sequence of steps also includes specific function
@@ -557,7 +508,10 @@ Elimination Module, Gauss-Jordan Elimination Module. The basic plan for unit
 testing is that I will be using RStudio's unit testing packages. The tests from
 the functional requirements will also be used. The unit testing is a stage where
 we should test for code coverage. My aim is for 100\% code coverage.
+					
 
+					
+\end{enumerate}
 
 
 
